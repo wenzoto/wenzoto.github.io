@@ -6,55 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<div> test 2</div>
-<div id="posts">  </div>
+<div> !!! </div>
 <!--<a href="https://wenzoto.github.io/index.html"> index </a> <br />-->
 <!--<a href="https://wenzoto.github.io/index2.html"> index2 </a> <br />-->
 <!--<a href="https://wenzoto.github.io/index3.html"> index3 </a> <br />-->
 <!--<a href="https://wenzoto.github.io/index4.html"> index4 </a> <br />-->
 <!--<a href="https://wenzoto.github.io/index5.html"> index5 </a> <br />-->
 <!--<script src="https://stage1-astra.surv.biz/digi_runner.js?surveyId=268&language=en"></script>-->
+<script type="text/javascript" src="./digi_runner.js?surveyId=268&language=en"></script>
 <script>
 
-console.log(-3)
-
-// let q =  userAgent = (function(){
-//     var ua= navigator.userAgent, tem,
-//         M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
-//     if(/trident/i.test(M[1])){
-//         tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
-//         return 'IE '+(tem[1] || '');
-//     }
-//     if(M[1]=== 'Chrome'){
-//         tem= ua.match(/\b(OPR|Edge?)\/(\d+)/);
-//         if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera').replace('Edg ', 'Edge ');
-//     }
-//     M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
-//     if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
-//
-//     return M[0];
-// })();
-
-function isFacebookApp() {
-    var ua = navigator.userAgent || navigator.vendor || window.opera;
-    return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1) || (ua.indexOf('Instagram') > -1);
-}
-
-var div = document.createElement('div');
-div.setAttribute('class', 'post block bc2');
-var str = '';
-str += ' ------------------- ';
-str += navigator.userAgent;
-str += ' ------------------- ';
-str += navigator.appName;
-str += ' ------------------- ';
-str += navigator.appVersion;
-str += ' ------------------- ';
-str += ' **** ' + isFacebookApp();
-str += ' ------------------- ';
-
-div.innerHTML = str;
-document.getElementById('posts').appendChild(div);
+console.log()
 
 
 
