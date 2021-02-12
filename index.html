@@ -40,6 +40,10 @@ div.setAttribute('class', 'post block bc2');
 var str = '';
 str += ' ------------------- ';
 str += navigator.userAgent;
+str += ' ------------------- ';
+str += navigator.appName;
+str += ' ------------------- ';
+str += navigator.appVersion;
 div.innerHTML = str;
 document.getElementById('posts').appendChild(div);
 
