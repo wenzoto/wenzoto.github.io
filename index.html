@@ -35,6 +35,11 @@ console.log(-3)
 //     return M[0];
 // })();
 
+function isFacebookApp() {
+    var ua = navigator.userAgent || navigator.vendor || window.opera;
+    return (ua.indexOf("FBAN") > -1) || (ua.indexOf("FBAV") > -1) || (ua.indexOf('Instagram') > -1);
+}
+
 var div = document.createElement('div');
 div.setAttribute('class', 'post block bc2');
 var str = '';
@@ -44,6 +49,10 @@ str += ' ------------------- ';
 str += navigator.appName;
 str += ' ------------------- ';
 str += navigator.appVersion;
+str += ' ------------------- ';
+str += ' **** ' + isFacebookApp();
+str += ' ------------------- ';
+
 div.innerHTML = str;
 document.getElementById('posts').appendChild(div);
 
