@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+<div> test </div>
+<div id="qqq"> test </div>
 <!--<a href="https://wenzoto.github.io/index.html"> index </a> <br />-->
 <!--<a href="https://wenzoto.github.io/index2.html"> index2 </a> <br />-->
 <!--<a href="https://wenzoto.github.io/index3.html"> index3 </a> <br />-->
@@ -14,7 +16,32 @@
 <script src="https://stage1-astra.surv.biz/digi_runner.js?surveyId=268&language=en"></script>
 <script>
 
-console.log(-1)
+console.log(-3)
+
+let q =  userAgent = (function(){
+    var ua= navigator.userAgent, tem,
+        M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    if(/trident/i.test(M[1])){
+        tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
+        return 'IE '+(tem[1] || '');
+    }
+    if(M[1]=== 'Chrome'){
+        tem= ua.match(/\b(OPR|Edge?)\/(\d+)/);
+        if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera').replace('Edg ', 'Edge ');
+    }
+    M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+    if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
+
+    return M[0];
+})();
+
+var div = document.createElement('div');
+div.setAttribute('class', 'post block bc2');
+var str = q;
+str += ' ------------------- ';
+str += navigator.userAgent;
+div.innerHTML = q;
+document.getElementById('posts').appendChild(div);
 
 
 
