@@ -23,23 +23,23 @@ console.log()
 
 
 //
-//     function SetParameters(e) {
-//         window.VocSignal_SendEvent && window.VocSignal_SendEvent('SetParameters', {
-//             apiUrl: 'https://dev2-child-astra.surv.biz',
-//             language: 'en',
-//             // customerId: `zu66FVdAjdsAZi74${Math.floor(Math.random() * Math.floor(9999))}`,
-//             customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
-//             surveyId:  104,//5699
-//             metadata: {
-//                 'name': 'my name'
-//             }
-//         });
-//     }
+    function SetParameters(e) {
+        window.VocSignal_SendEvent && window.VocSignal_SendEvent('SetParameters', {
+            apiUrl: 'https://stage1-astra.surv.biz',
+            language: 'en',
+            // customerId: `zu66FVdAjdsAZi74${Math.floor(Math.random() * Math.floor(9999))}`,
+            customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
+            surveyId:  268,//5699
+            metadata: {
+                'name': 'my name'
+            }
+        });
+    }
 // //
 // //
 // //
 // //
-//    SetParameters();
+   SetParameters();
 // //
 // //    function SetMockedData(e) {
 // //        window.VocSignal_SendEvent('SetMockedData', {
