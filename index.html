@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<div> test 35 </div>
+<div> test 36 </div>
 <div id="posts">  </div>
 <div id="test2"></div>
 <script>
@@ -33,9 +33,9 @@
             ? [M[1], M[2]]
             : [navigator.appName, navigator.appVersion, '-?'];
 
-        const inAppBrowser = isFacebookApp()
+        // const inAppBrowser = isFacebookApp()
 
-        return inAppBrowser ? 'inAppBrowser' : M.join(' ');
+        return  M.join(' ');
 
     })();
 
@@ -53,6 +53,9 @@
     str += ' ----------2--------- ';
     str += JSON.stringify(q);
     str += ' ----------2/2--------- ';
+    str += ' ----------3--------- ';
+    str += isFacebookApp();
+    str += ' ----------3/3--------- ';
 
     div.innerHTML = str;
     document.getElementById('posts').appendChild(div);
