@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<div> test 2</div>
+<div> test 34 </div>
 <div id="posts">  </div>
+<div id="test2"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/UAParser.js/0.7.24/ua-parser.js" integrity="sha512-yA9lGAG8EjHWtRKgDiM0xtvW8s5uk2Pw+feenv5p6SDyyQvUwkEmHKB7dykbrHAu4ywDQxHndIVqNZb+mkAU3w==" crossorigin="anonymous"></script>
 <!--<a href="https://wenzoto.github.io/index.html"> index </a> <br />-->
 <!--<a href="https://wenzoto.github.io/index2.html"> index2 </a> <br />-->
 <!--<a href="https://wenzoto.github.io/index3.html"> index3 </a> <br />-->
@@ -18,22 +20,31 @@
 
     console.log(-3)
 
-    // let q =  userAgent = (function(){
-    //     var ua= navigator.userAgent, tem,
-    //         M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
-    //     if(/trident/i.test(M[1])){
-    //         tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
-    //         return 'IE '+(tem[1] || '');
-    //     }
-    //     if(M[1]=== 'Chrome'){
-    //         tem= ua.match(/\b(OPR|Edge?)\/(\d+)/);
-    //         if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera').replace('Edg ', 'Edge ');
-    //     }
-    //     M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
-    //     if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
-    //
-    //     return M[0];
-    // })();
+    let q =  userAgent = (function(){
+
+        let ua = navigator.userAgent,
+            tem,
+            M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+
+        if (/trident/i.test(M[1])) {
+            tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
+            return 'IE ' + (tem[1] || '');
+        }
+
+        if (M[1] === 'Chrome') {
+            tem = ua.match(/\b(OPR|Edge)\/(\d+)/);
+            if (tem != null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+        }
+
+        M = M[2]
+            ? [M[1], M[2]]
+            : [navigator.appName, navigator.appVersion, '-?'];
+
+        const inAppBrowser = isFacebookApp()
+
+        return inAppBrowser ? 'inAppBrowser' : M.join(' ');
+
+    })();
 
     function isFacebookApp() {
         var ua = navigator.userAgent || navigator.vendor || window.opera;
@@ -43,20 +54,21 @@
     var div = document.createElement('div');
     div.setAttribute('class', 'post block bc2');
     var str = '';
-    str += ' ------------------- ';
+    str += ' ----------1--------- ';
     str += navigator.userAgent;
-    str += ' ------------------- ';
-    str += navigator.appName;
-    str += ' ------------------- ';
-    str += navigator.appVersion;
-    str += ' ------------------- ';
-    str += ' **** ' + isFacebookApp();
-    str += ' ------------------- ';
+    str += ' ----------1/1--------- ';
+    str += ' ----------2--------- ';
+    str += JSON.stringify(q());
+    str += ' ----------2/2--------- ';
 
     div.innerHTML = str;
     document.getElementById('posts').appendChild(div);
-
-
+    //
+    // test 2
+    //
+    // 5.0 (Linux; Android 10; SM-G960F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.152 Mobile Safari/537.36
+    //
+    //
 
 
 
