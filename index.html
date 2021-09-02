@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <title>App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://copy-customdemo-astra.surv.biz/digi_runner.js"></script>
+<!--    <script src="https://copy-customdemo-astra.surv.biz/digi_runner.js"></script>-->
+    <script type="text/javascript" src="./digi_runner.js"></script>
 </head>
 <body>
-<button onclick="SetParameters()"> SetParameters !!!! </button>
+<!--<button onclick="SetParameters()"> SetParameters !!!! </button>-->
 <script>
-
 
     function SetParameters() {
         window.VocSignal_SendEvent && window.VocSignal_SendEvent('SetParameters', {
@@ -20,6 +20,9 @@
         });
     }
 
+    setTimeout(() => {
+        SetParameters();
+    }, 3000)
 
 </script>
 </html>
