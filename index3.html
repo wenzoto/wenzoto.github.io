@@ -4,14 +4,27 @@
     <meta charset="utf-8">
     <title>App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<script src="https://copy-customdemo-astra.surv.biz/digi_runner.js"></script>-->
+    <script type="text/javascript" src="./digi_runner-1.js"></script>
 </head>
 <body>
-<a href="https://wenzoto.github.io/index.html"> index </a> <br />
-<a href="https://wenzoto.github.io/index2.html"> index2 </a> <br />
-<a href="https://wenzoto.github.io/index3.html"> index3 </a> <br />
-<a href="https://wenzoto.github.io/index4.html"> index4 </a> <br />
-<a href="https://wenzoto.github.io/index5.html"> index5 </a> <br />
-<script type="text/javascript" src="./digi_runner.js?full_screen=true"></script>
-</body>
-<script>console.log(3)</script>
+<!--<button onclick="SetParameters()"> SetParameters !!!! </button>-->
+<script>
+
+    console.log('--------20---------')
+
+    function SetParameters() {
+        window.VocSignal_SendEvent && window.VocSignal_SendEvent('SetParameters', {
+            apiUrl: 'https://copy-customdemo-astra.surv.biz',
+            language: 'de',
+            customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
+            surveyId: 974
+        });
+    }
+
+    setTimeout(() => {
+        SetParameters();
+    }, 1000)
+
+</script>
 </html>
