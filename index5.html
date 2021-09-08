@@ -1,17 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .rating input {
+            position:absolute;
+            left:-1000000em;
+            right:-1000000em;
+            display: inline-block;
+        }
+
+        .rating label {
+            text-indent: -1000em;
+            display: inline-block;
+            background-image: url('https://accessibility.mste.illinois.edu/sites/default/files/images/demo/stars/star-outline.svg');
+            width: 2em;
+            height: 2em;
+            background-size: contain;
+            background-repeat: no-repeat;
+            padding: 2px;
+            margin-right: .5em;
+        }
+
+        .rating input:hover + label, .rating input:hover ~ span label,
+        .rating input:focus + label, .rating input:focus ~ span label,
+        .rating input:checked + label, .rating input:checked ~ span label {
+            background-image: url('https://accessibility.mste.illinois.edu/sites/default/files/images/demo/stars/star.svg');
+        }
+
+        .rating span {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+        }
+
+        .rating input:focus + labeL {
+            outline: 2px dashed #777;
+        }
+    </style>
 </head>
 <body>
-<a href="https://wenzoto.github.io/index.html"> index </a> <br />
-<a href="https://wenzoto.github.io/index2.html"> index2 </a> <br />
-<a href="https://wenzoto.github.io/index3.html"> index3 </a> <br />
-<a href="https://wenzoto.github.io/index4.html"> index4 </a> <br />
-<a href="https://wenzoto.github.io/index5.html"> index5 </a> <br />
-<script src="https://dev2-child-astra.surv.biz/digi_runner.js?surveyId=104&language=en&full_screen=true"></script>
+
+<fieldset class="rating"><legend>Please rate:</legend> <span> <input id="star5" name="rating" type="radio" value="5" /> <label for="star5" title="Rocks!">5 stars</label> <span> <input id="star4" name="rating" type="radio" value="4" /> <label for="star4" title="Pretty good">4 stars</label> <span> <input id="star3" name="rating" type="radio" value="3" /> <label for="star3" title="Meh">3 stars</label> <span> <input id="star2" name="rating" type="radio" value="2" /> <label for="star2" title="Kinda bad">2 stars</label> <span> <input id="star1" name="rating" type="radio" value="1" /> <label for="star1" title="Sucks big time">1 star</label> </span> </span> </span> </span> </span></fieldset>
+
+<!--<script src="https://dev2-child-astra.surv.biz/digi_runner.js?surveyId=104&language=en&full_screen=true"></script>-->
 </body>
-<script>console.log(5)</script>
+<script>
+    console.log(1)
+</script>
 </html>
