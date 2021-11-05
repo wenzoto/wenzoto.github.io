@@ -11,20 +11,36 @@
 <!--<button onclick="SetParameters()"> SetParameters !!!! </button>-->
 <script>
 
-    console.log('--------34---------')
+    console.log('--------34цук---------')
 
-    function SetParameters() {
-        window.VocSignal_SendEvent && window.VocSignal_SendEvent('SetParameters', {
-            apiUrl: 'https://enel-astra.sandsiv.com',
-            language: 'it',
-            customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
-            surveyId: 22
+    // function SetParameters() {
+    //     window.VocSignal_SendEvent && window.VocSignal_SendEvent('SetParameters', {
+    //         apiUrl: 'https://enel-astra.sandsiv.com',
+    //         language: 'it',
+    //         customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
+    //         surveyId: 22
+    //     });
+    // }
+
+
+    function GetSurvey(e) {
+        window.VocSignal_SendEvent('GetSurvey', {
+            questionnaireHash: '0Ferrvr4oxuXTnt3VZzZPyrkoBKazd7m',
+            apiUrl: 'https://swisscard-survey.sandsiv.com',
+            // language: 'en',
+            // customerId: 'zu66FVdAjdsAZi74',
+            // surveyId: document.getElementById("inpText").value ||  341,
+            // metadata: {
+            //     'metadata_name1': 'metadata_value1',
+            //     'metadata_name2': 'metadata_value2',
+            //     'metadata_name3': 'metadata_value3',
+            // }
         });
-    }
+    }м
 
     setTimeout(() => {
-        SetParameters();
-    }, 1000)
+        GetSurvey();
+    }, 3000)
 
 </script>
 </html>
