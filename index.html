@@ -15,13 +15,21 @@
 </head>
 <body>
 
-<button id="id_click_id" onclick="SetParameters()"> id_click_id </button>
+<button id="id_click_id" onclick="test()"> id_click_id </button>
 
 <script>
+    var customerId = 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999))
 
     setTimeout(() => {
-        console.log('--------test-4--------', window.google_tag_manager)
+        console.log('--------window.google_tag_manager---------', window.google_tag_manager)
     }, 1000)
+
+    function test() {
+        console.log('--------window.dataLayer---------', window.dataLayer)
+        dataLayer.push({'var': customerId});
+
+        SetParameters()
+    }
 
     function SetParameters() {
         window.VocSignal_SendEvent && window.VocSignal_SendEvent('SetParameters', {
