@@ -4,43 +4,36 @@
     <meta charset="utf-8">
     <title>App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--<script src="https://copy-customdemo-astra.surv.biz/digi_runner.js"></script>-->
-    <script type="text/javascript" src="./digi_runner.js"></script>
+    <script src="https://copy-customdemo-astra.surv.biz/digi_runner.js"></script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KZZWSXH');</script>
+    <!-- End Google Tag Manager -->
 </head>
 <body>
-<!--<button onclick="SetParameters()"> SetParameters !!!! </button>-->
+
 <script>
 
-    console.log('--------34цук---------')
+    console.log('--------test---------')
 
-    // function SetParameters() {
-    //     window.VocSignal_SendEvent && window.VocSignal_SendEvent('SetParameters', {
-    //         apiUrl: 'https://enel-astra.sandsiv.com',
-    //         language: 'it',
-    //         customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
-    //         surveyId: 22
-    //     });
-    // }
-
-
-    function GetSurvey(e) {
-        window.VocSignal_SendEvent('GetSurvey', {
-            questionnaireHash: '0Ferrvr4oxuXTnt3VZzZPyrkoBKazd7m',
-            apiUrl: 'https://swisscard-survey.sandsiv.com',
-            // language: 'en',
-            // customerId: 'zu66FVdAjdsAZi74',
-            // surveyId: document.getElementById("inpText").value ||  341,
-            // metadata: {
-            //     'metadata_name1': 'metadata_value1',
-            //     'metadata_name2': 'metadata_value2',
-            //     'metadata_name3': 'metadata_value3',
-            // }
+    function SetParameters() {
+        window.VocSignal_SendEvent && window.VocSignal_SendEvent('SetParameters', {
+            apiUrl: 'https://copy-customdemo-astra.surv.biz',
+            language: 'en',
+            customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
+            surveyId: 1107
         });
     }
 
-    setTimeout(() => {
-        GetSurvey();
-    }, 3000)
-
 </script>
+
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KZZWSXH"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+</body>>
 </html>
