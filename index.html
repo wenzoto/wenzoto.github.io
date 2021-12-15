@@ -17,7 +17,9 @@
 
 <script>
 
-    console.log('--------test-2--------', window.google_tag_manager)
+    setTimeout(() => {
+        console.log('--------test-2--------', window.google_tag_manager)
+    }, 1000)
 
     function SetParameters() {
         window.VocSignal_SendEvent && window.VocSignal_SendEvent('SetParameters', {
