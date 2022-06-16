@@ -4,27 +4,33 @@
     <meta charset="utf-8">
     <title>App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--    <script type="text/javascript" src="./digi_runner.js"></script>-->
-    <script src="https://copy-customdemo-astra.surv.biz/digi_runner.js"></script>
+        <script type="text/javascript" src="./digi_runner.js"></script>
+<!--    <script src="https://copy-customdemo-astra.surv.biz/digi_runner.js"></script>-->
 </head>
-<body>
-t10111
-</body>
+<body> test runner </body>
 <script>
-    let qqq = window.VocSignal_SendEvent && window.VocSignal_SendEvent('SetParameters', {
-        apiUrl: 'https://copy-customdemo-astra.surv.biz',
-        language: 'de',
-        customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
-        surveyId: 1295
-    });
+    window.VocSignal_ListenEvent('SentAnswerCallback', (data) => {
+        if(data[0].id === 17230 && data[0]?.answerValue) {
 
-    console.log('---------qqq-0--------', qqq)
-    console.log('---------qqq-0--------', $)
-</script>
-<script src="https://javascript.info/article/script-async-defer/long.js?speed=1"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    console.log('---------qqq-2--------', qqq)
-    console.log('---------qqq-2--------', $)
+            fetch(`https://api.geocode.earth/v1/autocomplete?api_key=ge-59cb631a17779ea6&text=${data[0].answerValue}&size=1`)
+                .then(response => console.log('---------error---------', response, '  ', response.json()))
+                .then(commits => console.log('---------error---------', commits));
+
+
+            //https://api.geocode.earth/v1/autocomplete?api_key=ge-59cb631a17779ea6&text=kyiv&size=1
+            //https://api.geocode.earth/v1/autocomplete?api_key=ge-59cb631a17779ea6&text=kyiv&size=5&layers=-empire%2C-continent&client=ge-autocomplete-0.7.0
+        }
+    })
+
+    function SetParameters() {
+        let test = window.VocSignal_SendEvent && window.VocSignal_SendEvent('SetParameters', {
+            apiUrl: 'https://stage2-astra.surv.biz',
+            // apiUrl: 'http://localhost:8410',
+            language: 'en',
+            // customerId: 'zu66FVdAjdsAZi74',
+            customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
+            surveyId: 4644//980 //1059
+        });
+    }
 </script>
 </html>
