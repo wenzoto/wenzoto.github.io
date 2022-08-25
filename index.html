@@ -26,12 +26,19 @@
     }
 </style>
 <body>
- <h1> 002 </h1>
+ <h1> 003 </h1>
 </body>
 <script>
-
+    let timerId = null;
     const callbackName = 'PopupShownCallback';
     window.VocSignal_ListenEvent(callbackName, () => {
+        let timerId = setInterval(() => {
+            let elements = document.getElementsByClassName('SandSIV_Feedback_Modal');
+            console.log('---------elements---------', elements)
+            if(elements) {
+                clearInterval(timerId);
+            }
+        }, 100)
         alert(callbackName);
     })
 
