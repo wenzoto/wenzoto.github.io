@@ -34,9 +34,12 @@
     window.VocSignal_ListenEvent(callbackName, () => {
         let timerId = setInterval(() => {
             let elements = document.getElementsByClassName('SandSIV_Feedback_Modal');
-            console.log('---------elements---------', elements)
+
             if(elements.length) {
                 clearInterval(timerId);
+                setTimeout(() => {
+                    console.log('------>>>>>>>---показываем---------')
+                }, 0)
             }
         }, 100)
         alert(callbackName);
