@@ -4,54 +4,73 @@
     <meta charset="utf-8">
     <title>App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--<script src="https://copy-customdemo-astra.surv.biz/digi_runner.js"></script>-->
-    <script type="text/javascript" src="./digi_runner.js?surveyId=5308&language=en&apiUrl=https://stage2-astra.surv.biz"></script>
+    <script defer src="https://stage2-astra.surv.biz/digi_runner.js"></script>
+<!--    <script src="https://copy-customdemo-astra.surv.biz/digi_runner.js"></script>-->
+<!--    <script type="text/javascript" src="./digi_runner.js?surveyId=5308&language=en&apiUrl=https://stage2-astra.surv.biz"></script>-->
 </head>
-<style>
-    #VocSignalApp .SandSIV_Feedback_Modal {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        height: auto;
-        width: auto;
-        transform: none;
-    }
+<!--<style>-->
+<!--    #VocSignalApp .SandSIV_Feedback_Modal {-->
+<!--        position: absolute;-->
+<!--        left: 0;-->
+<!--        right: 0;-->
+<!--        top: 0;-->
+<!--        bottom: 0;-->
+<!--        height: auto;-->
+<!--        width: auto;-->
+<!--        transform: none;-->
+<!--    }-->
 
-    .supportMessage {
-        width: 100%;
-        margin-top: 100px;
-        text-align: center;
-    }
-</style>
+<!--    .supportMessage {-->
+<!--        width: 100%;-->
+<!--        margin-top: 100px;-->
+<!--        text-align: center;-->
+<!--    }-->
+<!--</style>-->
 <body>
- <h1> 006 </h1>
+ <h1> 01 </h1>
 </body>
 <script>
-    let timerId = null;
-    const callbackName = 'PopupShownCallback';
-    window.VocSignal_ListenEvent(callbackName, () => {
-        let timerId = setInterval(() => {
-            let elements = document.getElementsByClassName('SandSIV_Feedback_Modal');
 
-            if(elements.length) {
-                clearInterval(timerId);
-                setTimeout(() => {
-                    console.log('------>>>>>>>---показываем---------')
-                }, 0)
-            } else {
-                console.log('---------elements.length---------', elements.length)
-                alert(callbackName);
-            }
-        }, 100)
+    function SetParameters() {
+        window.VocSignal_SendEvent
+        && window.VocSignal_SendEvent('SetParameters', {
+            apiUrl: 'https://stage2-astra.surv.biz',
+            // apiUrl: 'http://localhost:8410',
+            language: 'de',
+            // customerId: 'zu66FVdAjdsAZi74',
+            customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
+            surveyId: 7224//980 //1059
+        });
+    }
 
-    })
+    SetParameters();
 
-    window.VocSignal_ListenEvent('FinishCallback', () => {
-        const event = new Event('window_close');
-        window.dispatchEvent(event);
-    })
+
+
+
+    // let timerId = null;
+    // const callbackName = 'PopupShownCallback';
+    // window.VocSignal_ListenEvent(callbackName, () => {
+    //     let timerId = setInterval(() => {
+    //         let elements = document.getElementsByClassName('SandSIV_Feedback_Modal');
+    //
+    //         if(elements.length) {
+    //             clearInterval(timerId);
+    //             setTimeout(() => {
+    //                 console.log('------>>>>>>>---показываем---------')
+    //             }, 0)
+    //         } else {
+    //             console.log('---------elements.length---------', elements.length)
+    //             alert(callbackName);
+    //         }
+    //     }, 100)
+    //
+    // })
+    //
+    // window.VocSignal_ListenEvent('FinishCallback', () => {
+    //     const event = new Event('window_close');
+    //     window.dispatchEvent(event);
+    // })
 
 </script>
 </html>
