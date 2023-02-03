@@ -38,25 +38,23 @@
 <script>
 
 
-    var linkElement = document.createElement('a');
-    linkElement.id = 'link';
-    window.document.body.appendChild(linkElement);
+    // var linkElement = document.createElement('a');
+    // linkElement.id = 'link';
+    // window.document.body.appendChild(linkElement);
+
+
+    const linkElement = document.createElement('a');
+        linkElement.id = 'link';
+        linkElement.target = '_blank';
+        linkElement.href = 'https://forum.playcanvas.com/t/solved-window-open-doesnt-work-in-safari-in-iphone/27610/7';
+        window.document.body.appendChild(linkElement);
 
     console.log('--1-------')
     setTimeout(() => {
-        // window.open('https://stage2.surv.biz/feedback/survey/6659/settings/language','_blank');
-        console.log('-2-----')
+        const link = document.getElementById('link');
+        console.log('---2---------------', link)
 
-        var menuAddress = "https://stage2.surv.biz/feedback/survey/6659/settings/language";
-        //window.open(menuAddress);
-
-        // Thanks https://stackoverflow.com/a/44487883
-        var link = document.getElementById('link');
-        console.log('---3---------------', link)
-        link.setAttribute('href', menuAddress);
-        link.setAttribute('target', '_blank');
         link.click();
-
     }, 5000)
 
 //    console.log('---------window.VocSignal_SendEvent---------', window.VocSignal_SendEvent)
