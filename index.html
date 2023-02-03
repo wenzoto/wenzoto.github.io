@@ -31,10 +31,20 @@
 </body>
 <script>
 
-    console.log('--------0-test---------',)
+    console.log('--------0-test--1-------',)
     setTimeout(() => {
-        window.open('https://stage2.surv.biz/feedback/survey/6659/settings/language','_blank');
-        console.log('--------1-test---------',)
+        // window.open('https://stage2.surv.biz/feedback/survey/6659/settings/language','_blank');
+        console.log('--------1-test--1-------',)
+
+        var menuAddress = "https://stage2.surv.biz/feedback/survey/6659/settings/language";
+        //window.open(menuAddress);
+
+        // Thanks https://stackoverflow.com/a/44487883
+        var link = document.getElementById('link');
+        link.setAttribute('href', menuAddress);
+        link.setAttribute('target', '_blank');
+        link.click();
+
     }, 5000)
 
 //    console.log('---------window.VocSignal_SendEvent---------', window.VocSignal_SendEvent)
