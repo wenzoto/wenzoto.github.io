@@ -8,28 +8,39 @@
 <!--    <script src="https://copy-customdemo-astra.surv.biz/digi_runner.js"></script>-->
 <!--    <script type="text/javascript" src="./digi_runner.js?surveyId=5308&language=en&apiUrl=https://stage2-astra.surv.biz"></script>-->
 </head>
-<!--<style>-->
-<!--    #VocSignalApp .SandSIV_Feedback_Modal {-->
-<!--        position: absolute;-->
-<!--        left: 0;-->
-<!--        right: 0;-->
-<!--        top: 0;-->
-<!--        bottom: 0;-->
-<!--        height: auto;-->
-<!--        width: auto;-->
-<!--        transform: none;-->
-<!--    }-->
+<style>
+    /*#VocSignalApp .SandSIV_Feedback_Modal {*/
+    /*    position: absolute;*/
+    /*    left: 0;*/
+    /*    right: 0;*/
+    /*    top: 0;*/
+    /*    bottom: 0;*/
+    /*    height: auto;*/
+    /*    width: auto;*/
+    /*    transform: none;*/
+    /*}*/
 
-<!--    .supportMessage {-->
-<!--        width: 100%;-->
-<!--        margin-top: 100px;-->
-<!--        text-align: center;-->
-<!--    }-->
-<!--</style>-->
+    /*.supportMessage {*/
+    /*    width: 100%;*/
+    /*    margin-top: 100px;*/
+    /*    text-align: center;*/
+    /*}*/
+    #link {
+        width: 100px;
+        height: 100px;
+        display: block;
+        background: red;
+    }
+</style>
 <body>
  <h1> 05 </h1>
 </body>
 <script>
+
+
+    var linkElement = document.createElement('a');
+    linkElement.id = 'link';
+    window.document.body.appendChild(linkElement);
 
     console.log('--------0-test--1-------',)
     setTimeout(() => {
