@@ -1,49 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>App</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script type="text/javascript" src="./digi_runner.js"></script>
-<!--    <script src="https://copy-customdemo-astra.surv.biz/digi_runner.js"></script>-->
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script src="digi_runner.js?surveyId=4536&language=en&apiUrl=https://copy-customdemo-astra.surv.biz"></script>
 </head>
-<body> test runner 1.0.0.2 </body>
+<body>
+<h1> 01 </h1>
 <script>
-
-    window.VocSignal_ListenEvent('SentAnswerCallback', (data) => {
-        if(data[0].id === 17230) {
-
-            const url = `https://api.geocode.earth/v1/autocomplete?api_key=ge-59cb631a17779ea6&text=${data[0].answerValue}&size=1`
-            const xhr = new XMLHttpRequest()
-            xhr.open('GET', url, true)
-            xhr.onload = () => {
-                const data = JSON.parse(xhr.response)?.features[0]?.properties
-                console.log('---------response---------', JSON.parse(xhr.response))
-
-                if(data) {
-                    window.VocSignal_SendEvent('SetMetadata', data)
-                }
-            }
-            xhr.onerror = () => console.error("error", xhr.response)
-
-            xhr.setRequestHeader('Accept', 'application/json')
-            xhr.send()
-        }
-    })
-
-    function SetParameters() {
-        window.VocSignal_SendEvent
-        && window.VocSignal_SendEvent('SetParameters', {
-            apiUrl: 'https://stage2-astra.surv.biz',
-            // apiUrl: 'http://localhost:8410',
-            language: 'en',
-            // customerId: 'zu66FVdAjdsAZi74',
-            customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
-            surveyId: 4644//980 //1059
-        });
-    }
-
-    SetParameters();
-
+    console.log('------------------', 1)
 </script>
+</body>
 </html>
