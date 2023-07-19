@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+    #link {
+        width: 100px;
+        height: 100px;
+        display: block;
+        background: red;
+    }
+</style>
+<body>
+ <h1> 9 </h1>
+</body>
+<script>
+
+    const linkElement = document.createElement('a');
+        linkElement.id = 'link';
+        linkElement.target = '_blank';
+        linkElement.href = 'https://wenzoto.github.io/index-1.html';
+        window.document.body.appendChild(linkElement);
+
+//     setTimeout(() => {
+        const link = document.getElementById('link');
+        link.click();
+//     }, 5000)
+
+</script>
+</html>

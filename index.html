@@ -4,30 +4,20 @@
     <meta charset="utf-8">
     <title>App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./digi_runner.js?surveyId=10047&language=en&apiUrl=https://stage2-astra.surv.biz&full_screen=true"></script>
 </head>
-<style>
-    #link {
-        width: 100px;
-        height: 100px;
-        display: block;
-        background: red;
-    }
-</style>
 <body>
- <h1> 9 </h1>
+ <h1> 1 </h1>
 </body>
 <script>
 
-    const linkElement = document.createElement('a');
-        linkElement.id = 'link';
-        linkElement.target = '_blank';
-        linkElement.href = 'https://wenzoto.github.io/index-1.html';
-        window.document.body.appendChild(linkElement);
+    window.VocSignal_ListenEvent('InitialResponseCallback', (data) => {
+        console.log('InitialResponseCallback', data);
+    });
 
-//     setTimeout(() => {
-        const link = document.getElementById('link');
-        link.click();
-//     }, 5000)
+    window.VocSignal_ListenEvent('PopupShownCallback', (data) => {
+        console.log('PopupShownCallback', data);
+    });
 
 </script>
 </html>
