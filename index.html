@@ -15,10 +15,8 @@
         console.log('InitialResponseCallback', data);
 
         if(data.status === 200) {
-            // var test1 = () => window.VocSignal_SendEvent('PopupSurvey');
             setTimeout(() => {
-                window.VocSignal_SendEvent('OpenWindow')
-
+                window.VocSignal_SendEvent('PopupSurvey')
             }, 2000)
         }
     });
