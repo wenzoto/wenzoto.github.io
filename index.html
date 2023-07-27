@@ -7,7 +7,7 @@
     <script src="./digi_runner.js?surveyId=293&language=sl&apiUrl=https://a1slovenia-astra.sandsiv.com"></script>
 </head>
 <body>
- <h1> 3 </h1>
+ <h1> 4 </h1>
 </body>
 <script>
 
@@ -17,7 +17,7 @@
         if(data.status === 200) {
             // var test1 = () => window.VocSignal_SendEvent('PopupSurvey');
             setTimeout(() => {
-                window.VocSignal_SendEvent('OpenWindow')
+                window.VocSignal_SendEvent('PopupSurvey')
             }, 2000)
         }
     });
