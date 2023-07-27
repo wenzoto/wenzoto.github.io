@@ -17,13 +17,18 @@
         if(data.status === 200) {
             // var test1 = () => window.VocSignal_SendEvent('PopupSurvey');
             setTimeout(() => {
-                window.VocSignal_SendEvent('PopupSurvey')
+                window.VocSignal_SendEvent('OpenWindow')
+
             }, 2000)
         }
     });
 
     window.VocSignal_ListenEvent('PopupShownCallback', (data) => {
         console.log('PopupShownCallback', data);
+    });
+
+    window.VocSignal_ListenEvent('BlockerCallback', (text) => {
+        console.warn('BlockerCallback: ', text);
     });
 
 </script>
