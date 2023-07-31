@@ -9131,7 +9131,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".SandSIV_Feedback_Modal .question-labe
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".SandSIV_Feedback_Modal .loader__wrapper{position:relative;-webkit-transition:opacity .5s ease-in-out;transition:opacity .5s ease-in-out;height:360px;max-height:100%}.SandSIV_Feedback_Modal .loader__wrapper.loader-min{height:50px}.SandSIV_Feedback_Modal .loader,.SandSIV_Feedback_Modal .loader:before,.SandSIV_Feedback_Modal .loader:after{border-radius:50%}.SandSIV_Feedback_Modal .loader:before,.SandSIV_Feedback_Modal .loader:after{position:absolute;content:\"\"}.SandSIV_Feedback_Modal .loader:before{top:-0.1em;left:-0.1em;width:5.2em;height:10.2em;-webkit-transform-origin:5.2em 5.1em;transform-origin:5.2em 5.1em;-webkit-animation:loading 2s infinite ease 1.5s;animation:loading 2s infinite ease 1.5s;border-radius:10.2em 0 0 10.2em;background:#fff}.SandSIV_Feedback_Modal .loader{font-size:11px;width:10em;height:10em;text-indent:-99999em;-webkit-box-shadow:inset 0 0 0 8px #428bca;box-shadow:inset 0 0 0 8px #428bca;position:absolute;left:50%;top:50%;-webkit-transform:translateX(-50%) translateY(-50%);transform:translateX(-50%) translateY(-50%)}.SandSIV_Feedback_Modal .loader:after{top:-0.1em;left:5.1em;width:5.2em;height:10.2em;-webkit-transform-origin:0 5.1em;transform-origin:0 5.1em;-webkit-animation:loading 2s infinite ease;animation:loading 2s infinite ease;border-radius:0 10.2em 10.2em 0;background:#fff}@-webkit-keyframes loading{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes loading{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".SandSIV_Feedback_Modal .loader__wrapper{position:relative;-webkit-transition:opacity .5s ease-in-out;transition:opacity .5s ease-in-out;height:360px;max-height:100%}.SandSIV_Feedback_Modal .loader,.SandSIV_Feedback_Modal .loader:before,.SandSIV_Feedback_Modal .loader:after{border-radius:50%}.SandSIV_Feedback_Modal .loader:before,.SandSIV_Feedback_Modal .loader:after{position:absolute;content:\"\"}.SandSIV_Feedback_Modal .loader:before{top:-0.1em;left:-0.1em;width:5.2em;height:10.2em;-webkit-transform-origin:5.2em 5.1em;transform-origin:5.2em 5.1em;-webkit-animation:loading 2s infinite ease 1.5s;animation:loading 2s infinite ease 1.5s;border-radius:10.2em 0 0 10.2em;background:#fff}.SandSIV_Feedback_Modal .loader{font-size:11px;width:10em;height:10em;text-indent:-99999em;-webkit-box-shadow:inset 0 0 0 8px #428bca;box-shadow:inset 0 0 0 8px #428bca;position:absolute;left:50%;top:50%;-webkit-transform:translateX(-50%) translateY(-50%);transform:translateX(-50%) translateY(-50%)}.SandSIV_Feedback_Modal .loader:after{top:-0.1em;left:5.1em;width:5.2em;height:10.2em;-webkit-transform-origin:0 5.1em;transform-origin:0 5.1em;-webkit-animation:loading 2s infinite ease;animation:loading 2s infinite ease;border-radius:0 10.2em 10.2em 0;background:#fff}@-webkit-keyframes loading{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes loading{0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}", ""]);
 // Exports
 /* harmony default export */ __webpack_exports__["Z"] = (___CSS_LOADER_EXPORT___);
 
@@ -14684,14 +14684,11 @@ var Http = /*#__PURE__*/function () {
       var xhr = new XMLHttpRequest();
       var requestTime = new Date().getTime();
       xhr.open(request.method, request.endpoint);
+      xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8'); // Prevent cache in IE
 
-      if (!request.externalUrl) {
-        xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8'); // Prevent cache in IE
-
-        xhr.setRequestHeader('Cache-Control', 'no-cache');
-        xhr.setRequestHeader('Pragma', 'no-cache');
-        xhr.setRequestHeader('Expires', '-1');
-      }
+      xhr.setRequestHeader('Cache-Control', 'no-cache');
+      xhr.setRequestHeader('Pragma', 'no-cache');
+      xhr.setRequestHeader('Expires', '-1');
 
       xhr.onload = function () {
         var responseTime = new Date().getTime() - requestTime;
@@ -14726,11 +14723,7 @@ var Http = /*#__PURE__*/function () {
       }).filter(function (item) {
         return item;
       }).join('&');
-
-      if (!request.externalUrl) {
-        request.endpoint = request.endpoint + searchParams;
-      }
-
+      request.endpoint = request.endpoint + searchParams;
       return Http.createRequestProxy(request);
     }
   }, {
@@ -14817,7 +14810,6 @@ var retryCounter = 0;
           requestType = _request$types[0],
           successType = _request$types[1],
           errorType = _request$types[2],
-          params = request.params,
           body = request.body;
 
       var successRequest = function successRequest(response) {
@@ -14825,7 +14817,6 @@ var retryCounter = 0;
         next({
           type: successType,
           response: response,
-          params: params,
           data: body
         });
       };
@@ -14840,7 +14831,6 @@ var retryCounter = 0;
           next({
             type: errorType,
             response: error,
-            params: params,
             data: body
           });
         }
@@ -14853,8 +14843,7 @@ var retryCounter = 0;
 
       store.dispatch({
         type: requestType,
-        data: body,
-        params: params
+        data: body
       });
       var apiRequest = Http[request.method.toLowerCase()](request);
       apiRequest.promise.then(successRequest, errorRequest);
@@ -17268,11 +17257,9 @@ var modalTitleSelector = createSelector([settingsSelector], function (settings) 
 });
 /*==========================================CONFIGURABLE QUESTION==========================================*/
 
-var CONFIGURABLE_TYPES = ['QuestionConfigurableDIGI', 'QuestionUnsubscribeDIGI', 'QuestionDynamicConfigurableDIGI'];
-
 var configurableFilter = function configurableFilter(_ref10) {
   var type = _ref10.type;
-  return [].concat(CONFIGURABLE_TYPES).includes(type);
+  return ['QuestionConfigurableDIGI', 'QuestionUnsubscribeDIGI'].includes(type);
 };
 
 var configurableMapper = function configurableMapper(_ref11) {
@@ -17300,8 +17287,7 @@ var configurableMapper = function configurableMapper(_ref11) {
       max = _ref11$options.max,
       render_type = _ref11$options.render_type,
       options = selectors_objectWithoutProperties(_ref11$options, _excluded3),
-      isChatMode = _ref11.isChatMode,
-      csvData = _ref11.csvData;
+      isChatMode = _ref11.isChatMode;
 
   var lastIsOpen = last_is_open !== 'no';
   var isSingleChoice = last_is_open === 'single choice open single line' || last_is_open === 'single choice open multi line';
@@ -17311,18 +17297,14 @@ var configurableMapper = function configurableMapper(_ref11) {
   var randomAnswersOrder = Boolean(+random_answers_order);
   var prepareAnswers = answers.map(function (answer, index) {
     var lastItemLastIsOpen = index === lastItemIndex && lastIsOpen;
-    return selectors_objectSpread(selectors_objectSpread(selectors_objectSpread(selectors_objectSpread({}, answer), lastItemLastIsOpen ? {
+    return selectors_objectSpread(selectors_objectSpread(selectors_objectSpread({}, answer), lastItemLastIsOpen ? {
       message: ''
     } : {}), {}, {
       isOpen: lastItemLastIsOpen,
       checked: answerValues && Boolean(answerValues.find(function (value) {
         return value === answer.value;
       }))
-    }, type === 'QuestionDynamicConfigurableDIGI' ? {
-      answerValues: answerValues
-    } : {}), render_type === 'customselect' ? {
-      label: answer.name
-    } : {});
+    });
   });
 
   if (randomAnswersOrder) {
@@ -17341,7 +17323,7 @@ var configurableMapper = function configurableMapper(_ref11) {
     renderType = 'radio';
   }
 
-  return selectors_objectSpread({
+  return {
     current: current,
     isSkipped: isSkipped,
     isSendingChatMode: isSendingChatMode,
@@ -17377,9 +17359,7 @@ var configurableMapper = function configurableMapper(_ref11) {
       random_answers_order: +random_answers_order
     }),
     answers: prepareAnswers
-  }, csvData ? {
-    csvData: csvData
-  } : {});
+  };
 };
 
 var mapQuestionConfigurable = createSelector([allQuestionSelector, isChatModeSelector], function (questions, isChatMode) {
@@ -17465,7 +17445,7 @@ var mapQuestionScalable = createSelector([allQuestionSelector, isChatModeSelecto
 
 var commonFilter = function commonFilter(_ref14) {
   var type = _ref14.type;
-  return ![].concat(CONFIGURABLE_TYPES, ['QuestionScalableDIGI', 'QuestionGroup']).includes(type);
+  return !['QuestionConfigurableDIGI', 'QuestionUnsubscribeDIGI', 'QuestionScalableDIGI', 'QuestionGroup'].includes(type);
 };
 
 var commonMapper = function commonMapper(_ref15) {
@@ -17779,18 +17759,6 @@ var getActiveQuestionId = createSelector([surveyStateSelector], function (_ref21
   return finish ? 'finish' : activeQuestion === null || activeQuestion === void 0 ? void 0 : activeQuestion.id;
 });
 ;// CONCATENATED MODULE: ./src/modules/actions.js
-function actions_slicedToArray(arr, i) { return actions_arrayWithHoles(arr) || actions_iterableToArrayLimit(arr, i) || actions_unsupportedIterableToArray(arr, i) || actions_nonIterableRest(); }
-
-function actions_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function actions_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return actions_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return actions_arrayLikeToArray(o, minLen); }
-
-function actions_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function actions_iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function actions_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 function actions_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function actions_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { actions_ownKeys(Object(source), true).forEach(function (key) { actions_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { actions_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -17882,35 +17850,20 @@ function sendAnswers(params) {
     var state = getState();
     var questions = currentQuestionSelector(state);
     var questionsAnswers = state.surveyState.questionsAnswers;
-    var answers = questions.map(function (question) {
-      var findAnswer = questionsAnswers.find(function (answer) {
-        return answer.id === question.id;
-      });
-      var message = question.type !== 'QuestionTextMessageDIGI' ? params[question.id] || (findAnswer === null || findAnswer === void 0 ? void 0 : findAnswer.message) || null : 'OK';
-
-      if (question.type === 'QuestionDynamicConfigurableDIGI' && message) {
-        message = Object.fromEntries(Object.entries(message).filter(function (_ref2) {
-          var _ref3 = actions_slicedToArray(_ref2, 2),
-              _ = _ref3[0],
-              value = _ref3[1];
-
-          return value;
-        }));
-      }
-
-      return actions_objectSpread(actions_objectSpread({
-        id: question.id
-      }, question.type === 'QuestionDynamicConfigurableDIGI' ? {
-        novalidate: true
-      } : {}), {}, {
-        message: message
-      });
-    });
     var paramsRequest = {
       apiUrl: state.surveyState.apiUrl,
       questionsHash: state.surveyState.hash,
       params: {
-        answers: answers
+        answers: questions.map(function (question) {
+          var findAnswer = questionsAnswers.find(function (answer) {
+            return answer.id === question.id;
+          });
+          var message = question.type !== 'QuestionTextMessageDIGI' ? params[question.id] || (findAnswer === null || findAnswer === void 0 ? void 0 : findAnswer.message) || null : 'OK';
+          return {
+            id: question.id,
+            message: message
+          };
+        })
       }
     };
     var request = dispatch(sendAnswersRequest(paramsRequest));
@@ -18339,193 +18292,7 @@ StylesService_defineProperty(StylesService, "positionDictionary", {
 });
 ;// CONCATENATED MODULE: ./src/services/StylesService/index.js
 
-;// CONCATENATED MODULE: ./src/services/ExternalAnswersService/ExternalAnswersService.js
-var ExternalAnswersService_excluded = ["answers", "options", "type"];
-
-function ExternalAnswersService_toConsumableArray(arr) { return ExternalAnswersService_arrayWithoutHoles(arr) || ExternalAnswersService_iterableToArray(arr) || ExternalAnswersService_unsupportedIterableToArray(arr) || ExternalAnswersService_nonIterableSpread(); }
-
-function ExternalAnswersService_nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function ExternalAnswersService_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return ExternalAnswersService_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return ExternalAnswersService_arrayLikeToArray(o, minLen); }
-
-function ExternalAnswersService_iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function ExternalAnswersService_arrayWithoutHoles(arr) { if (Array.isArray(arr)) return ExternalAnswersService_arrayLikeToArray(arr); }
-
-function ExternalAnswersService_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function ExternalAnswersService_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function ExternalAnswersService_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ExternalAnswersService_ownKeys(Object(source), true).forEach(function (key) { ExternalAnswersService_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ExternalAnswersService_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function ExternalAnswersService_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function ExternalAnswersService_objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = ExternalAnswersService_objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function ExternalAnswersService_objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-function ExternalAnswersService_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function ExternalAnswersService_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function ExternalAnswersService_createClass(Constructor, protoProps, staticProps) { if (protoProps) ExternalAnswersService_defineProperties(Constructor.prototype, protoProps); if (staticProps) ExternalAnswersService_defineProperties(Constructor, staticProps); return Constructor; }
-
-var ExternalAnswersService = /*#__PURE__*/function () {
-  function ExternalAnswersService() {
-    ExternalAnswersService_classCallCheck(this, ExternalAnswersService);
-  }
-
-  ExternalAnswersService_createClass(ExternalAnswersService, null, [{
-    key: "mapQuestions",
-    value: function mapQuestions(questions) {
-      return questions.map(function (question) {
-        return question.type === 'QuestionConfigurableDIGI' ? ExternalAnswersService.checkConfigurable(question) : question;
-      });
-    }
-  }, {
-    key: "checkConfigurable",
-    value: function checkConfigurable(_ref) {
-      var answers = _ref.answers,
-          options = _ref.options,
-          type = _ref.type,
-          rest = ExternalAnswersService_objectWithoutProperties(_ref, ExternalAnswersService_excluded);
-
-      var regex = /^http.*\.csv$/;
-      var isDynamicAnswers = regex.test(answers[0].name);
-
-      if (isDynamicAnswers) {
-        options.render_type = ['select', 'customselect'].includes(options.render_type) ? options.render_type : 'customselect';
-        options.is_multichoice = '0';
-        options.random_answers_order = '0';
-        options.last_is_open = "no";
-
-        if (options.required === '1') {
-          options.max = '1';
-          options.min = '1';
-        } else {
-          options.max = '1';
-          options.min = '0';
-        }
-
-        type = 'QuestionDynamicConfigurableDIGI';
-        answers = [ExternalAnswersService_objectSpread({}, answers[0])];
-      }
-
-      return ExternalAnswersService_objectSpread(ExternalAnswersService_objectSpread({}, rest), {}, {
-        answers: answers,
-        options: options,
-        type: type,
-        csvData: {
-          data: null,
-          loading: true
-        }
-      });
-    }
-  }, {
-    key: "csvToArray",
-    value: function csvToArray(csv) {
-      var csvData = [];
-      var jsonObject = csv.split(/\r?\n|\r/);
-
-      for (var i = 0; i < jsonObject.length; i++) {
-        csvData.push(jsonObject[i].split(','));
-      }
-
-      return csvData;
-    }
-  }, {
-    key: "createNestedStructure",
-    value: function createNestedStructure(input) {
-      var result = [];
-
-      function findOrAddNode(nodeName, parentDependence) {
-        var existingNode = parentDependence.find(function (node) {
-          return node.name === nodeName;
-        });
-
-        if (existingNode) {
-          return existingNode;
-        }
-
-        var newNode = {
-          name: nodeName,
-          value: nodeName,
-          label: nodeName,
-          dependence: []
-        };
-        parentDependence.push(newNode);
-        return newNode;
-      }
-
-      input.forEach(function (path) {
-        var currentDependence = result;
-        path.forEach(function (nodeName) {
-          var node = findOrAddNode(nodeName, currentDependence);
-          currentDependence = node.dependence;
-        });
-      });
-      return result;
-    }
-  }, {
-    key: "mapExternalQuestions",
-    value: function mapExternalQuestions(questions, csvData, action) {
-      return questions.map(function (question) {
-        var newQuestion = question;
-
-        if (question.id === action.params.questionId) {
-          var indexesToDelete = [];
-          var newCsvData = [];
-          var answers = csvData.reduce(function (acc, csvLine, index) {
-            var newCsvLine = [];
-
-            if (index === 0) {
-              newCsvLine = csvLine.filter(function (LineEl, inx) {
-                var includesValue = LineEl.includes(question.answers[0].value);
-                !includesValue && indexesToDelete.push(inx);
-                return includesValue;
-              }).map(function (LineEl, inx) {
-                return {
-                  inx: inx,
-                  id: question.answers[0].id,
-                  value: LineEl,
-                  name: LineEl
-                };
-              });
-            } else {
-              //We sort the indexes in descending order to avoid the problem with re-indexing.
-              indexesToDelete.sort(function (a, b) {
-                return b - a;
-              });
-              indexesToDelete.forEach(function (index) {
-                return csvLine.splice(index, 1);
-              });
-              newCsvData.push(csvLine);
-            }
-
-            return [].concat(ExternalAnswersService_toConsumableArray(acc), ExternalAnswersService_toConsumableArray(newCsvLine));
-          }, []);
-          newQuestion = ExternalAnswersService_objectSpread(ExternalAnswersService_objectSpread({}, question), {}, {
-            answers: answers,
-            csvData: {
-              newCsvData: newCsvData,
-              nestedStructure: ExternalAnswersService.createNestedStructure(newCsvData),
-              data: csvData,
-              loading: false
-            }
-          });
-        }
-
-        return newQuestion;
-      });
-    }
-  }]);
-
-  return ExternalAnswersService;
-}();
-;// CONCATENATED MODULE: ./src/services/ExternalAnswersService/index.js
-
 ;// CONCATENATED MODULE: ./src/services/index.js
-
 
 
 
@@ -18588,9 +18355,6 @@ var SET_CURRENT_QUESTION_ERROR = 'SET_CURRENT_QUESTION_ERROR';
 var TERMINATE_SURVEY_REQUEST = 'TERMINATE_SURVEY_REQUEST';
 var TERMINATE_SURVEY_SUCCESS = 'TERMINATE_SURVEY_SUCCESS';
 var TERMINATE_SURVEY_ERROR = 'TERMINATE_SURVEY_ERROR';
-var CSV_LIST_QUESTIONS_REQUEST = 'CSV_LIST_QUESTIONS_REQUEST';
-var CSV_LIST_QUESTIONS_SUCCESS = 'CSV_LIST_QUESTIONS_SUCCESS';
-var CSV_LIST_QUESTIONS_ERROR = 'CSV_LIST_QUESTIONS_ERROR';
 var LOAD_SURVEY_WITH_MOCKED_DATA = 'LOAD_SURVEY_WITH_MOCKED_DATA';
 var ENABLE_POPUPS = 'ENABLE_POPUPS';
 var DISABLE_POPUPS = 'DISABLE_POPUPS';
@@ -18703,7 +18467,6 @@ function surveyReducer() {
 
       var groupModel;
       var questions = HelperService.mapByUnsafe(HelperService.setUuidToObjInArr(response.questions), surveyState.unsafe);
-      questions = ExternalAnswersService.mapQuestions(questions);
 
       if (response.settings.DIGI_SURVEY_IS_STEPBYSTEP && questions.length > 1) {
         groupModel = HelperService.getGroupModel(questions);
@@ -18788,8 +18551,6 @@ function surveyReducer() {
         var _groupModel;
 
         var _questions = HelperService.mapByUnsafe(HelperService.setUuidToObjInArr(action.data.questions), surveyState.unsafe);
-
-        _questions = ExternalAnswersService.mapQuestions(_questions);
 
         if (surveyState.settings.DIGI_SURVEY_IS_STEPBYSTEP && _questions.length > 1) {
           _groupModel = HelperService.getGroupModel(_questions);
@@ -18897,32 +18658,6 @@ function surveyReducer() {
           sendingError: true,
           submitted: false,
           pendingSend: false
-        });
-      }
-
-    case CSV_LIST_QUESTIONS_SUCCESS:
-      {
-        var csvData = ExternalAnswersService.csvToArray(action.response);
-
-        var _questions2 = ExternalAnswersService.mapExternalQuestions(surveyState.questions, csvData, action);
-
-        if (surveyState.settings.DIGI_CHAT_MODE) {
-          var _questionsHistory = surveyState.questionsHistory;
-          var indexLastQuestion = _questionsHistory.length - 1;
-          var lastQuestion = _questionsHistory[indexLastQuestion];
-          var isQuestionGroup = lastQuestion.questionGroup;
-
-          if (isQuestionGroup) {
-            lastQuestion.questionGroup = _questions2;
-          } else {
-            lastQuestion = _questions2[0];
-          }
-
-          _questionsHistory[indexLastQuestion] = lastQuestion;
-        }
-
-        return modules_objectSpread(modules_objectSpread({}, surveyState), {}, {
-          questions: _questions2
         });
       }
 
@@ -19177,18 +18912,6 @@ var toggleStatusRequest = function toggleStatusRequest(payload, params) {
     };
   }();
 };
-function getCsvListQuestions(_ref18) {
-  var url = _ref18.url,
-      options = _ref18.options;
-  return modules_defineProperty({}, CALL_API, {
-    endpoint: url,
-    externalUrl: true,
-    method: 'GET',
-    types: [CSV_LIST_QUESTIONS_REQUEST, CSV_LIST_QUESTIONS_SUCCESS, CSV_LIST_QUESTIONS_ERROR],
-    body: {},
-    params: modules_objectSpread({}, options)
-  });
-}
 // EXTERNAL MODULE: ./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js
 var injectStylesIntoStyleTag = __webpack_require__(3379);
 var injectStylesIntoStyleTag_default = /*#__PURE__*/__webpack_require__.n(injectStylesIntoStyleTag);
@@ -20591,6 +20314,7 @@ var SelectGroup = (SelectGroup_class = /*#__PURE__*/function (_Component) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     SelectGroup_defineProperty(SelectGroup_assertThisInitialized(_this), "state", {
+      idActiveOption: null,
       error: false,
       answers: _this.props.answers
     });
@@ -20620,7 +20344,8 @@ var SelectGroup = (SelectGroup_class = /*#__PURE__*/function (_Component) {
 
       if ((idCheck || onCurrent || onError || onStartAgain || onDisabled) && current) {
         this.setState({
-          answers: answers
+          answers: answers,
+          idActiveOption: null
         });
         startAgain && startAgainToggle(false);
       }
@@ -20639,7 +20364,7 @@ var SelectGroup = (SelectGroup_class = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "onSelectHandler",
-    value: function onSelectHandler(event) {
+    value: function onSelectHandler(event, items) {
       var _this2 = this;
 
       var _this$props2 = this.props,
@@ -20652,6 +20377,9 @@ var SelectGroup = (SelectGroup_class = /*#__PURE__*/function (_Component) {
       var value = Array.from(event.target.selectedOptions, function (option) {
         return option.value;
       });
+      var item = items.filter(function (el) {
+        return value.includes(el.value);
+      });
       var showOpen = lastIsOpen && answers.some(function (answer) {
         return value.includes(answer.value) && answer.isOpen;
       });
@@ -20661,7 +20389,8 @@ var SelectGroup = (SelectGroup_class = /*#__PURE__*/function (_Component) {
             checked: showOpen && isSingleChoice ? answer.isOpen : value.includes(answer.value)
           });
         }),
-        showOpen: showOpen
+        showOpen: showOpen,
+        idActiveOption: item.id
       }, function () {
         _this2.changeHandler();
 
@@ -20842,318 +20571,6 @@ SelectGroup.propTypes = {
   isChatMode: (prop_types_default()).bool
 };
 ;// CONCATENATED MODULE: ./src/components/ConfigurableQuestion/components/SelectGroup/index.js
-
-;// CONCATENATED MODULE: ./src/components/ConfigurableQuestion/components/ExternalSelectGroup/ExternalSelectGroup.js
-function ExternalSelectGroup_typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ExternalSelectGroup_typeof = function _typeof(obj) { return typeof obj; }; } else { ExternalSelectGroup_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ExternalSelectGroup_typeof(obj); }
-
-var ExternalSelectGroup_class;
-
-function ExternalSelectGroup_toConsumableArray(arr) { return ExternalSelectGroup_arrayWithoutHoles(arr) || ExternalSelectGroup_iterableToArray(arr) || ExternalSelectGroup_unsupportedIterableToArray(arr) || ExternalSelectGroup_nonIterableSpread(); }
-
-function ExternalSelectGroup_nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function ExternalSelectGroup_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return ExternalSelectGroup_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return ExternalSelectGroup_arrayLikeToArray(o, minLen); }
-
-function ExternalSelectGroup_iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function ExternalSelectGroup_arrayWithoutHoles(arr) { if (Array.isArray(arr)) return ExternalSelectGroup_arrayLikeToArray(arr); }
-
-function ExternalSelectGroup_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function ExternalSelectGroup_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function ExternalSelectGroup_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ExternalSelectGroup_ownKeys(Object(source), true).forEach(function (key) { ExternalSelectGroup_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ExternalSelectGroup_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function ExternalSelectGroup_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function ExternalSelectGroup_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function ExternalSelectGroup_createClass(Constructor, protoProps, staticProps) { if (protoProps) ExternalSelectGroup_defineProperties(Constructor.prototype, protoProps); if (staticProps) ExternalSelectGroup_defineProperties(Constructor, staticProps); return Constructor; }
-
-function ExternalSelectGroup_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) ExternalSelectGroup_setPrototypeOf(subClass, superClass); }
-
-function ExternalSelectGroup_setPrototypeOf(o, p) { ExternalSelectGroup_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return ExternalSelectGroup_setPrototypeOf(o, p); }
-
-function ExternalSelectGroup_createSuper(Derived) { var hasNativeReflectConstruct = ExternalSelectGroup_isNativeReflectConstruct(); return function _createSuperInternal() { var Super = ExternalSelectGroup_getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = ExternalSelectGroup_getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return ExternalSelectGroup_possibleConstructorReturn(this, result); }; }
-
-function ExternalSelectGroup_possibleConstructorReturn(self, call) { if (call && (ExternalSelectGroup_typeof(call) === "object" || typeof call === "function")) { return call; } return ExternalSelectGroup_assertThisInitialized(self); }
-
-function ExternalSelectGroup_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function ExternalSelectGroup_isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function ExternalSelectGroup_getPrototypeOf(o) { ExternalSelectGroup_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return ExternalSelectGroup_getPrototypeOf(o); }
-
-function ExternalSelectGroup_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function ExternalSelectGroup_applyDecoratedDescriptor(target, property, decorators, descriptor, context) { var desc = {}; Object.keys(descriptor).forEach(function (key) { desc[key] = descriptor[key]; }); desc.enumerable = !!desc.enumerable; desc.configurable = !!desc.configurable; if ('value' in desc || desc.initializer) { desc.writable = true; } desc = decorators.slice().reverse().reduce(function (desc, decorator) { return decorator(target, property, desc) || desc; }, desc); if (context && desc.initializer !== void 0) { desc.value = desc.initializer ? desc.initializer.call(context) : void 0; desc.initializer = undefined; } if (desc.initializer === void 0) { Object.defineProperty(target, property, desc); desc = null; } return desc; }
-
-
-
-
-
-
-var ExternalSelectGroup = (ExternalSelectGroup_class = /*#__PURE__*/function (_Component) {
-  ExternalSelectGroup_inherits(ExternalSelectGroup, _Component);
-
-  var _super = ExternalSelectGroup_createSuper(ExternalSelectGroup);
-
-  function ExternalSelectGroup() {
-    var _this;
-
-    ExternalSelectGroup_classCallCheck(this, ExternalSelectGroup);
-
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _super.call.apply(_super, [this].concat(args));
-
-    ExternalSelectGroup_defineProperty(ExternalSelectGroup_assertThisInitialized(_this), "state", {
-      error: false,
-      answers: _this.props.answers,
-      answerValues: _this.props.answers.map(function (answer) {
-        return answer.answerValues;
-      })
-    });
-
-    ExternalSelectGroup_defineProperty(ExternalSelectGroup_assertThisInitialized(_this), "refSelect", /*#__PURE__*/react.createRef());
-
-    return _this;
-  }
-
-  ExternalSelectGroup_createClass(ExternalSelectGroup, [{
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      var _this$props = this.props,
-          isFocus = _this$props.isFocus,
-          current = _this$props.current,
-          startAgain = _this$props.startAgain,
-          answers = _this$props.answers,
-          startAgainToggle = _this$props.startAgainToggle;
-      var focused = this.state.focused;
-
-      var _QuestionsService$get = QuestionsService.getDidUpdateSettings(this.props, prevProps, 'configurable'),
-          onDisabled = _QuestionsService$get.onDisabled,
-          onCurrent = _QuestionsService$get.onCurrent,
-          onError = _QuestionsService$get.onError,
-          onStartAgain = _QuestionsService$get.onStartAgain,
-          idCheck = _QuestionsService$get.idCheck;
-
-      if ((idCheck || onCurrent || onError || onStartAgain || onDisabled) && current) {
-        this.setState({
-          answers: answers,
-          answerValues: answers.map(function (answer) {
-            return answer.answerValues;
-          })
-        });
-        startAgain && startAgainToggle(false);
-      }
-
-      if (isFocus && this.refSelect.current && !focused) {
-        this.refSelect.current.focus();
-        this.setState({
-          focused: !focused
-        });
-      }
-    }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.validate();
-    }
-  }, {
-    key: "onSelectHandler",
-    value: function onSelectHandler(event, items) {
-      var _this2 = this;
-
-      var _this$state = this.state,
-          answers = _this$state.answers,
-          answerValues = _this$state.answerValues;
-      var value = Array.from(event.target.selectedOptions, function (option) {
-        return option.value;
-      });
-      this.setState({
-        answers: answers.map(function (answer) {
-          var checked = false;
-          var answerValues = false;
-
-          if (answer.inx < items.inx) {
-            checked = answer.checked;
-            answerValues = answer.answerValues;
-          } else if (answer.inx === items.inx) {
-            checked = true;
-            answerValues = value[0];
-          }
-
-          return ExternalSelectGroup_objectSpread(ExternalSelectGroup_objectSpread({}, answer), {}, {
-            checked: checked,
-            answerValues: answerValues
-          });
-        }),
-        answerValues: answerValues.map(function (el, inx) {
-          var newElement = false;
-
-          if (inx < items.inx) {
-            newElement = el;
-          } else if (inx === items.inx) {
-            newElement = value[0];
-          }
-
-          return newElement;
-        })
-      }, function () {
-        _this2.changeHandler();
-      });
-    }
-  }, {
-    key: "changeHandler",
-    value: function changeHandler() {
-      var validSelected = this.state.answers.reduce(function (acc, _ref) {
-        var value = _ref.value,
-            answerValues = _ref.answerValues;
-        acc[value] = answerValues;
-        return ExternalSelectGroup_objectSpread(ExternalSelectGroup_objectSpread({}, acc), {}, ExternalSelectGroup_defineProperty({}, value, answerValues));
-      }, {});
-      var isValid = this.validate();
-      this.props.changeHandler(validSelected, isValid);
-    }
-  }, {
-    key: "validate",
-    value: function validate() {
-      var _this$props2 = this.props,
-          requiredType = _this$props2.options.requiredType,
-          logger = _this$props2.logger;
-      var validObj = {
-        typeError: requiredType,
-        isValid: requiredType === 'default' || !this.state.answerValues.some(function (el) {
-          return !el;
-        })
-      };
-      logger(validObj);
-      return validObj;
-    }
-  }, {
-    key: "getSelect",
-    value: function getSelect(answer) {
-      var _this3 = this;
-
-      var nestedStructure = this.props.nestedStructure;
-      var answerValues = this.state.answerValues;
-      var options = nestedStructure;
-      var inx = answer.inx;
-      var hasParentAnswerValues;
-
-      if (inx === 0) {
-        hasParentAnswerValues = true;
-      } else {
-        var inxParentAnswer = inx - 1;
-        hasParentAnswerValues = answerValues[inxParentAnswer];
-
-        var _loop = function _loop(i) {
-          if (answerValues[i]) {
-            var _options$find;
-
-            options = ((_options$find = options.find(function (_ref2) {
-              var value = _ref2.value;
-              return value === answerValues[i];
-            })) === null || _options$find === void 0 ? void 0 : _options$find.dependence) || [];
-          }
-        };
-
-        for (var i = 0; i !== inx; i++) {
-          _loop(i);
-        }
-      }
-
-      var answersWithEmpty = [{
-        value: null,
-        name: ''
-      }].concat(ExternalSelectGroup_toConsumableArray(options));
-      var value = answerValues[inx];
-      return /*#__PURE__*/react.createElement("select", {
-        id: "".concat(answer.id, "_").concat(answer.inx, "_select"),
-        "aria-labelledby": "".concat(answer.id, "_").concat(answer.inx, "_legend"),
-        onChange: function onChange(e) {
-          return _this3.onSelectHandler(e, answer);
-        },
-        className: "configurable-question-select",
-        value: value,
-        disabled: !hasParentAnswerValues,
-        ref: this.refSelect
-      }, answersWithEmpty.map(function (_ref3, inx) {
-        var name = _ref3.name,
-            value = _ref3.value;
-        return /*#__PURE__*/react.createElement(DangerouslySetInnerHTMLHoc, {
-          html: name,
-          type: 'option',
-          key: inx,
-          value: value
-        });
-      }));
-    }
-  }, {
-    key: "renderSelect",
-    value: function renderSelect(answer, inx) {
-      var _this$props3 = this.props,
-          render_type = _this$props3.options.render_type,
-          info_text = _this$props3.label.info_text;
-      return /*#__PURE__*/react.createElement("div", {
-        key: inx,
-        className: "configurable-question__wrapper configurable-".concat(render_type)
-      }, this.getSelect(answer), /*#__PURE__*/react.createElement(DangerouslySetInnerHTMLHoc, {
-        className: "digi-question__extra-block ".concat(!info_text && 'extra-block__empty'),
-        html: info_text
-      }));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this4 = this;
-
-      var _this$props4 = this.props,
-          isSkipped = _this$props4.isSkipped,
-          sendRequest = _this$props4.sendRequest,
-          isSendSubmit = _this$props4.isSendSubmit,
-          isFilled = _this$props4.isFilled,
-          renderSubmitButton = _this$props4.renderSubmitButton,
-          renderLoaderOnEvent = _this$props4.renderLoaderOnEvent,
-          isSendingChatMode = _this$props4.isSendingChatMode,
-          isSendingError = _this$props4.isSendingError,
-          id = _this$props4.id,
-          isInvalid = _this$props4.isInvalid,
-          isAnswered = _this$props4.isAnswered;
-      var answers = this.state.answers;
-      return /*#__PURE__*/react.createElement("div", {
-        id: id,
-        "aria-describedby": "".concat(id, "_error"),
-        "aria-invalid": isInvalid,
-        role: "group"
-      }, isSkipped ? null : answers.map(function (answer, inx) {
-        return _this4.renderSelect(answer, inx);
-      }), renderLoaderOnEvent(isSendingChatMode, isSendingError, sendRequest), isAnswered && renderSubmitButton(sendRequest, isSendSubmit, isFilled));
-    }
-  }]);
-
-  return ExternalSelectGroup;
-}(react.Component), (ExternalSelectGroup_applyDecoratedDescriptor(ExternalSelectGroup_class.prototype, "onSelectHandler", [autobind], Object.getOwnPropertyDescriptor(ExternalSelectGroup_class.prototype, "onSelectHandler"), ExternalSelectGroup_class.prototype), ExternalSelectGroup_applyDecoratedDescriptor(ExternalSelectGroup_class.prototype, "getSelect", [autobind], Object.getOwnPropertyDescriptor(ExternalSelectGroup_class.prototype, "getSelect"), ExternalSelectGroup_class.prototype), ExternalSelectGroup_applyDecoratedDescriptor(ExternalSelectGroup_class.prototype, "renderSelect", [autobind], Object.getOwnPropertyDescriptor(ExternalSelectGroup_class.prototype, "renderSelect"), ExternalSelectGroup_class.prototype)), ExternalSelectGroup_class);
-ExternalSelectGroup.propTypes = {
-  options: prop_types_default().shape({
-    render_type: (prop_types_default()).string,
-    TagName: (prop_types_default()).string,
-    lastIsOpen: (prop_types_default()).bool,
-    min: (prop_types_default()).number,
-    max: (prop_types_default()).number
-  }),
-  answers: prop_types_default().arrayOf(prop_types_default().shape({
-    name: (prop_types_default()).string,
-    value: (prop_types_default()).string
-  })),
-  requiredType: (prop_types_default()).string,
-  changeHandler: (prop_types_default()).func,
-  logger: (prop_types_default()).func
-};
-;// CONCATENATED MODULE: ./src/components/ConfigurableQuestion/components/ExternalSelectGroup/index.js
 
 ;// CONCATENATED MODULE: ./node_modules/@emotion/sheet/dist/emotion-sheet.browser.esm.js
 /*
@@ -28074,7 +27491,7 @@ var NonceProvider = /*#__PURE__*/function (_Component) {
 /* harmony default export */ var react_select_esm = (StateManagedSelect);
 
 
-;// CONCATENATED MODULE: ./src/components/ConfigurableQuestion/components/CustomSelectComponents/CustomOption.js
+;// CONCATENATED MODULE: ./src/components/ConfigurableQuestion/components/CustomSelectGroup/components/CustomOption.js
 function CustomOption_extends() { CustomOption_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return CustomOption_extends.apply(this, arguments); }
 
 
@@ -28090,7 +27507,7 @@ var CustomOption = function CustomOption(props) {
     html: label
   })));
 };
-;// CONCATENATED MODULE: ./src/components/ConfigurableQuestion/components/CustomSelectComponents/ComponentSingleValue.js
+;// CONCATENATED MODULE: ./src/components/ConfigurableQuestion/components/CustomSelectGroup/components/ComponentSingleValue.js
 var ComponentSingleValue_excluded = ["children"];
 
 function ComponentSingleValue_objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = ComponentSingleValue_objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
@@ -28110,7 +27527,7 @@ var ComponentSingleValue = function ComponentSingleValue(_ref) {
     html: value === null || value === void 0 ? void 0 : value.label
   }));
 };
-;// CONCATENATED MODULE: ./src/components/ConfigurableQuestion/components/CustomSelectComponents/ComponentMultiValue.js
+;// CONCATENATED MODULE: ./src/components/ConfigurableQuestion/components/CustomSelectGroup/components/ComponentMultiValue.js
 
 
 
@@ -28122,7 +27539,7 @@ var ComponentMultiValue = function ComponentMultiValue(props) {
     html: props === null || props === void 0 ? void 0 : (_props$data = props.data) === null || _props$data === void 0 ? void 0 : _props$data.label
   }));
 };
-;// CONCATENATED MODULE: ./src/components/ConfigurableQuestion/components/CustomSelectComponents/index.js
+;// CONCATENATED MODULE: ./src/components/ConfigurableQuestion/components/CustomSelectGroup/components/index.js
 
 
 
@@ -28132,12 +27549,6 @@ var CustomSelectGroup_excluded = ["min"];
 function CustomSelectGroup_objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = CustomSelectGroup_objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
 function CustomSelectGroup_objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-function CustomSelectGroup_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function CustomSelectGroup_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { CustomSelectGroup_ownKeys(Object(source), true).forEach(function (key) { CustomSelectGroup_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { CustomSelectGroup_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function CustomSelectGroup_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function CustomSelectGroup_slicedToArray(arr, i) { return CustomSelectGroup_arrayWithHoles(arr) || CustomSelectGroup_iterableToArrayLimit(arr, i) || CustomSelectGroup_unsupportedIterableToArray(arr, i) || CustomSelectGroup_nonIterableRest(); }
 
@@ -28150,6 +27561,12 @@ function CustomSelectGroup_arrayLikeToArray(arr, len) { if (len == null || len >
 function CustomSelectGroup_iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function CustomSelectGroup_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function CustomSelectGroup_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function CustomSelectGroup_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { CustomSelectGroup_ownKeys(Object(source), true).forEach(function (key) { CustomSelectGroup_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { CustomSelectGroup_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function CustomSelectGroup_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -28187,6 +27604,11 @@ var CustomSelectGroup = function CustomSelectGroup(props) {
       render_type = _props$options.render_type,
       last_is_open = _props$options.last_is_open,
       isSingleChoice = _props$options.isSingleChoice;
+  var correctAnswers = answers.map(function (answ) {
+    return CustomSelectGroup_objectSpread(CustomSelectGroup_objectSpread({}, answ), {}, {
+      label: answ.name
+    });
+  });
 
   var _useState = (0,react.useState)([]),
       _useState2 = CustomSelectGroup_slicedToArray(_useState, 2),
@@ -28206,10 +27628,10 @@ var CustomSelectGroup = function CustomSelectGroup(props) {
     value: isOpenValue,
     tagType: last_is_open,
     changeHandler: function changeHandler(value) {
-      var newValues = values.map(function (val) {
-        return val.isOpen ? CustomSelectGroup_objectSpread(CustomSelectGroup_objectSpread({}, val), {}, {
+      var newValues = values.map(function (v) {
+        return v.isOpen ? CustomSelectGroup_objectSpread(CustomSelectGroup_objectSpread({}, v), {}, {
           message: value
-        }) : val;
+        }) : v;
       });
       onChangeSelect(newValues);
     },
@@ -28272,7 +27694,7 @@ var CustomSelectGroup = function CustomSelectGroup(props) {
 
   (0,react.useEffect)(function () {
     if (current) {
-      var answersArray = answers.filter(function (answers) {
+      var answersArray = correctAnswers.filter(function (answers) {
         return answers.checked;
       });
       setValues(answersArray);
@@ -28281,6 +27703,10 @@ var CustomSelectGroup = function CustomSelectGroup(props) {
   }, [current, startAgain]);
   (0,react.useEffect)(function () {
     validate(values);
+    var answersArray = correctAnswers.filter(function (answers) {
+      return answers.checked;
+    });
+    setValues(answersArray);
   }, []);
   var selectClassNames = {
     'configurable-question__custom-select-disabled': disabled,
@@ -28305,7 +27731,7 @@ var CustomSelectGroup = function CustomSelectGroup(props) {
   }, /*#__PURE__*/react.createElement(react_select_esm, {
     value: isMulti ? values : values[0],
     onChange: onChangeSelect,
-    options: answers,
+    options: correctAnswers,
     className: StylesService.getClassname(selectClassNames),
     autoFocus: isFocus,
     classNamePrefix: 'sandsiv',
@@ -28340,221 +27766,6 @@ CustomSelectGroup.propTypes = {
   isChatMode: (prop_types_default()).bool
 };
 ;// CONCATENATED MODULE: ./src/components/ConfigurableQuestion/components/CustomSelectGroup/index.js
-
-;// CONCATENATED MODULE: ./src/components/ConfigurableQuestion/components/ExternalCustomSelectGroup/ExternalCustomSelectGroup.js
-function ExternalCustomSelectGroup_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function ExternalCustomSelectGroup_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ExternalCustomSelectGroup_ownKeys(Object(source), true).forEach(function (key) { ExternalCustomSelectGroup_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ExternalCustomSelectGroup_ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function ExternalCustomSelectGroup_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function ExternalCustomSelectGroup_slicedToArray(arr, i) { return ExternalCustomSelectGroup_arrayWithHoles(arr) || ExternalCustomSelectGroup_iterableToArrayLimit(arr, i) || ExternalCustomSelectGroup_unsupportedIterableToArray(arr, i) || ExternalCustomSelectGroup_nonIterableRest(); }
-
-function ExternalCustomSelectGroup_nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function ExternalCustomSelectGroup_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return ExternalCustomSelectGroup_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return ExternalCustomSelectGroup_arrayLikeToArray(o, minLen); }
-
-function ExternalCustomSelectGroup_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function ExternalCustomSelectGroup_iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]); if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function ExternalCustomSelectGroup_arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-var ExternalCustomSelectGroup = function ExternalCustomSelectGroup(props) {
-  var id = props.id,
-      isInvalid = props.isInvalid,
-      answers = props.answers,
-      isFocus = props.isFocus,
-      isSkipped = props.isSkipped,
-      isFilled = props.isFilled,
-      isSendingError = props.isSendingError,
-      isSendSubmit = props.isSendSubmit,
-      isSendingChatMode = props.isSendingChatMode,
-      isAutoSave = props.isAutoSave,
-      changeHandler = props.changeHandler,
-      sendRequest = props.sendRequest,
-      renderLoaderOnEvent = props.renderLoaderOnEvent,
-      renderSubmitButton = props.renderSubmitButton,
-      disabled = props.disabled,
-      current = props.current,
-      startAgain = props.startAgain,
-      startAgainToggle = props.startAgainToggle,
-      nestedStructure = props.nestedStructure,
-      info_text = props.label.info_text,
-      _props$options = props.options,
-      render_type = _props$options.render_type,
-      requiredType = _props$options.requiredType,
-      logger = props.logger;
-
-  var _useState = (0,react.useState)(answers),
-      _useState2 = ExternalCustomSelectGroup_slicedToArray(_useState, 2),
-      storedAnswers = _useState2[0],
-      setStoredAnswers = _useState2[1];
-
-  var _useState3 = (0,react.useState)(answers.map(function (answer) {
-    return answer.answerValues;
-  })),
-      _useState4 = ExternalCustomSelectGroup_slicedToArray(_useState3, 2),
-      answerValues = _useState4[0],
-      setAnswerValues = _useState4[1];
-
-  var onChangeSelect = function onChangeSelect(value, items) {
-    var newStoredAnswers = storedAnswers.map(function (answer) {
-      var checked = false;
-      var answerValues = false;
-
-      if (answer.inx < items.inx) {
-        checked = answer.checked;
-        answerValues = answer.answerValues;
-      } else if (answer.inx === items.inx) {
-        checked = true;
-        answerValues = value.value;
-      }
-
-      return ExternalCustomSelectGroup_objectSpread(ExternalCustomSelectGroup_objectSpread({}, answer), {}, {
-        checked: checked,
-        answerValues: answerValues
-      });
-    });
-    var newAnswerValues = answerValues.map(function (el, inx) {
-      var newElement = false;
-
-      if (inx < items.inx) {
-        newElement = el;
-      } else if (inx === items.inx) {
-        newElement = value.value;
-      }
-
-      return newElement;
-    });
-    setStoredAnswers(newStoredAnswers);
-    setAnswerValues(newAnswerValues);
-    var validSelected = newStoredAnswers.reduce(function (acc, _ref) {
-      var value = _ref.value,
-          answerValues = _ref.answerValues;
-      acc[value] = answerValues;
-      return ExternalCustomSelectGroup_objectSpread(ExternalCustomSelectGroup_objectSpread({}, acc), {}, ExternalCustomSelectGroup_defineProperty({}, value, answerValues));
-    }, {});
-    var isValid = validate(newAnswerValues);
-    changeHandler(validSelected, isValid);
-  };
-
-  var validate = function validate(answerValues) {
-    var validObj = {
-      typeError: requiredType,
-      isValid: requiredType === 'default' || !answerValues.some(function (el) {
-        return !el;
-      })
-    };
-    logger(validObj);
-    return validObj;
-  };
-
-  (0,react.useEffect)(function () {
-    if (current) {
-      setStoredAnswers(answers);
-      setAnswerValues(answers.map(function (answer) {
-        return answer.answerValues;
-      }));
-      startAgain && startAgainToggle(false);
-    }
-  }, [current, startAgain]);
-  (0,react.useEffect)(function () {
-    validate(answerValues);
-  }, []);
-  var selectClassNames = {
-    'configurable-question__custom-select-disabled': disabled,
-    'configurable-question__custom-select': true
-  };
-
-  var getSelect = function getSelect(answer) {
-    var options = nestedStructure;
-    var inx = answer.inx;
-    var hasParentAnswerValues;
-
-    if (inx === 0) {
-      hasParentAnswerValues = true;
-    } else {
-      var inxParentAnswer = inx - 1;
-      hasParentAnswerValues = answerValues[inxParentAnswer];
-
-      var _loop = function _loop(i) {
-        if (answerValues[i]) {
-          var _options$find;
-
-          options = ((_options$find = options.find(function (_ref2) {
-            var value = _ref2.value;
-            return value === answerValues[i];
-          })) === null || _options$find === void 0 ? void 0 : _options$find.dependence) || [];
-        }
-      };
-
-      for (var i = 0; i !== inx; i++) {
-        _loop(i);
-      }
-    }
-
-    return /*#__PURE__*/react.createElement(react_select_esm, {
-      value: options.find(function (_ref3) {
-        var value = _ref3.value;
-        return value === answerValues[inx];
-      }) || null,
-      onChange: function onChange(e) {
-        return onChangeSelect(e, answer);
-      },
-      options: options,
-      className: StylesService.getClassname(selectClassNames),
-      autoFocus: isFocus,
-      classNamePrefix: 'sandsiv',
-      isDisabled: !hasParentAnswerValues,
-      components: {
-        Option: CustomOption,
-        ValueContainer: ComponentSingleValue
-      }
-    });
-  };
-
-  var renderSelect = function renderSelect(answer, inx) {
-    return /*#__PURE__*/react.createElement("div", {
-      key: inx,
-      className: "configurable-question__wrapper configurable-".concat(render_type)
-    }, getSelect(answer), /*#__PURE__*/react.createElement(DangerouslySetInnerHTMLHoc, {
-      className: "digi-question__extra-block ".concat(!info_text && 'extra-block__empty'),
-      html: info_text
-    }));
-  };
-
-  return /*#__PURE__*/react.createElement("div", {
-    id: id,
-    "aria-describedby": "".concat(id, "_error"),
-    "aria-invalid": isInvalid,
-    role: "group"
-  }, isSkipped ? null : storedAnswers.map(renderSelect), renderLoaderOnEvent(isSendingChatMode, isSendingError, sendRequest), !isAutoSave && renderSubmitButton(sendRequest, isSendSubmit, isFilled));
-};
-ExternalCustomSelectGroup.propTypes = {
-  options: prop_types_default().shape({
-    render_type: (prop_types_default()).string,
-    TagName: (prop_types_default()).string,
-    lastIsOpen: (prop_types_default()).bool,
-    min: (prop_types_default()).number,
-    max: (prop_types_default()).number
-  }),
-  answers: prop_types_default().arrayOf(prop_types_default().shape({
-    name: (prop_types_default()).string,
-    value: (prop_types_default()).string
-  })),
-  requiredType: (prop_types_default()).string,
-  changeHandler: (prop_types_default()).func,
-  logger: (prop_types_default()).func,
-  disabled: (prop_types_default()).bool
-};
-;// CONCATENATED MODULE: ./src/components/ConfigurableQuestion/components/ExternalCustomSelectGroup/index.js
 
 ;// CONCATENATED MODULE: ./src/components/ConfigurableQuestion/components/ButtonGroup/ButtonGroup.js
 function ButtonGroup_typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { ButtonGroup_typeof = function _typeof(obj) { return typeof obj; }; } else { ButtonGroup_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return ButtonGroup_typeof(obj); }
@@ -28833,8 +28044,6 @@ ButtonGroup.propTypes = {
 
 
 
-
-
 // EXTERNAL MODULE: ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/ConfigurableQuestion/ConfigurableQuestion.scss
 var ConfigurableQuestion = __webpack_require__(7669);
 ;// CONCATENATED MODULE: ./src/components/ConfigurableQuestion/ConfigurableQuestion.scss
@@ -28951,8 +28160,6 @@ var ConfigurableQuestion_ConfigurableQuestion_ConfigurableQuestion = (Configurab
           isFocus = _this$props$question.isFocus,
           label = _this$props$question.label,
           grouped = _this$props$question.grouped,
-          type = _this$props$question.type,
-          csvData = _this$props$question.csvData,
           submitted = _this$props.submitted,
           isChatMode = _this$props.isChatMode,
           sendRequest = _this$props.sendRequest,
@@ -29008,16 +28215,12 @@ var ConfigurableQuestion_ConfigurableQuestion_ConfigurableQuestion = (Configurab
           return /*#__PURE__*/react.createElement(CheckboxGroup, propsModel);
 
         case 'select':
-          return type === 'QuestionDynamicConfigurableDIGI' ? /*#__PURE__*/react.createElement(ExternalSelectGroup, ConfigurableQuestion_extends({}, propsModel, {
-            nestedStructure: csvData.nestedStructure
-          })) : /*#__PURE__*/react.createElement(SelectGroup, ConfigurableQuestion_extends({}, propsModel, {
+          return /*#__PURE__*/react.createElement(SelectGroup, ConfigurableQuestion_extends({}, propsModel, {
             isAutoSave: isAutoSave
           }));
 
         case 'customselect':
-          return type === 'QuestionDynamicConfigurableDIGI' ? /*#__PURE__*/react.createElement(ExternalCustomSelectGroup, ConfigurableQuestion_extends({}, propsModel, {
-            nestedStructure: csvData.nestedStructure
-          })) : /*#__PURE__*/react.createElement(CustomSelectGroup, ConfigurableQuestion_extends({}, propsModel, {
+          return /*#__PURE__*/react.createElement(CustomSelectGroup, ConfigurableQuestion_extends({}, propsModel, {
             isAutoSave: isAutoSave
           }));
 
@@ -29366,11 +28569,9 @@ var Loading_update = injectStylesIntoStyleTag_default()(Loading/* default */.Z, 
 ;// CONCATENATED MODULE: ./src/components/Loading/Loading.js
 
 
-var Loading_Loading_Loading = function Loading(_ref) {
-  var _ref$wrapperClass = _ref.wrapperClass,
-      wrapperClass = _ref$wrapperClass === void 0 ? '' : _ref$wrapperClass;
+var Loading_Loading_Loading = function Loading() {
   return /*#__PURE__*/react.createElement("div", {
-    className: "loader__wrapper ".concat(wrapperClass)
+    className: "loader__wrapper"
   }, /*#__PURE__*/react.createElement("svg", {
     className: "lds-spinner",
     width: "100%",
@@ -31590,74 +30791,6 @@ var AdditionalBlock = /*#__PURE__*/(0,react.memo)(function (_ref) {
 });
 ;// CONCATENATED MODULE: ./src/components/AdditionalBlock/index.js
 
-;// CONCATENATED MODULE: ./src/components/DynamicConfigurableQuestion/DynamicConfigurableQuestion.js
-function DynamicConfigurableQuestion_typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { DynamicConfigurableQuestion_typeof = function _typeof(obj) { return typeof obj; }; } else { DynamicConfigurableQuestion_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return DynamicConfigurableQuestion_typeof(obj); }
-
-function DynamicConfigurableQuestion_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function DynamicConfigurableQuestion_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function DynamicConfigurableQuestion_createClass(Constructor, protoProps, staticProps) { if (protoProps) DynamicConfigurableQuestion_defineProperties(Constructor.prototype, protoProps); if (staticProps) DynamicConfigurableQuestion_defineProperties(Constructor, staticProps); return Constructor; }
-
-function DynamicConfigurableQuestion_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) DynamicConfigurableQuestion_setPrototypeOf(subClass, superClass); }
-
-function DynamicConfigurableQuestion_setPrototypeOf(o, p) { DynamicConfigurableQuestion_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return DynamicConfigurableQuestion_setPrototypeOf(o, p); }
-
-function DynamicConfigurableQuestion_createSuper(Derived) { var hasNativeReflectConstruct = DynamicConfigurableQuestion_isNativeReflectConstruct(); return function _createSuperInternal() { var Super = DynamicConfigurableQuestion_getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = DynamicConfigurableQuestion_getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return DynamicConfigurableQuestion_possibleConstructorReturn(this, result); }; }
-
-function DynamicConfigurableQuestion_possibleConstructorReturn(self, call) { if (call && (DynamicConfigurableQuestion_typeof(call) === "object" || typeof call === "function")) { return call; } return DynamicConfigurableQuestion_assertThisInitialized(self); }
-
-function DynamicConfigurableQuestion_assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function DynamicConfigurableQuestion_isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function DynamicConfigurableQuestion_getPrototypeOf(o) { DynamicConfigurableQuestion_getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return DynamicConfigurableQuestion_getPrototypeOf(o); }
-
-
-
-
-var DynamicConfigurableQuestion = /*#__PURE__*/function (_Component) {
-  DynamicConfigurableQuestion_inherits(DynamicConfigurableQuestion, _Component);
-
-  var _super = DynamicConfigurableQuestion_createSuper(DynamicConfigurableQuestion);
-
-  function DynamicConfigurableQuestion() {
-    DynamicConfigurableQuestion_classCallCheck(this, DynamicConfigurableQuestion);
-
-    return _super.apply(this, arguments);
-  }
-
-  DynamicConfigurableQuestion_createClass(DynamicConfigurableQuestion, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      if (this.props.question.csvData.loading) {
-        this.props.getCsvListQuestions({
-          url: this.props.question.answers[0].name,
-          options: {
-            questionId: this.props.question.id,
-            answerId: this.props.question.answers[0].id
-          }
-        });
-      }
-    }
-  }, {
-    key: "renderConfigurableQuestion",
-    value: function renderConfigurableQuestion() {
-      return /*#__PURE__*/react.createElement(ConfigurableQuestion_ConfigurableQuestion_ConfigurableQuestion, this.props);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return this.props.question.csvData.loading ? /*#__PURE__*/react.createElement(Loading_Loading_Loading, {
-        wrapperClass: 'loader-min'
-      }) : this.renderConfigurableQuestion();
-    }
-  }]);
-
-  return DynamicConfigurableQuestion;
-}(react.Component);
-;// CONCATENATED MODULE: ./src/components/DynamicConfigurableQuestion/index.js
-
 ;// CONCATENATED MODULE: ./src/components/DangerouslySetInnerHTMLHoc/DangerouslySetInnerHTMLHoc.js
 var DangerouslySetInnerHTMLHoc_excluded = ["html", "type", "elementRef"];
 
@@ -31733,7 +30866,6 @@ function DangerouslySetInnerHTMLHoc(props) {
 ;// CONCATENATED MODULE: ./src/components/DangerouslySetInnerHTMLHoc/index.js
 
 ;// CONCATENATED MODULE: ./src/components/index.js
-
 
 
 
@@ -31999,7 +31131,7 @@ var FeedbackModal_FeedbackModal_FeedbackModal = (FeedbackModal_class = /*#__PURE
         startAgain: this.state.startAgain,
         startAgainToggle: this.startAgainToggle,
         key: question.uuid
-      };
+      }; // isGroupQuestion => not for chatMode
 
       switch (type) {
         case 'QuestionScalableDIGI':
@@ -32010,11 +31142,6 @@ var FeedbackModal_FeedbackModal_FeedbackModal = (FeedbackModal_class = /*#__PURE
 
         case 'QuestionOpenDIGI':
           return /*#__PURE__*/react.createElement(OpenQuestion_OpenQuestion_OpenQuestion, propsModel);
-
-        case 'QuestionDynamicConfigurableDIGI':
-          return /*#__PURE__*/react.createElement(DynamicConfigurableQuestion, FeedbackModal_extends({}, propsModel, {
-            getCsvListQuestions: this.props.getCsvListQuestions
-          }));
 
         case 'QuestionConfigurableDIGI':
         case 'QuestionUnsubscribeDIGI':
@@ -32430,8 +31557,7 @@ var App = (_dec = connect(function (state) {
   setSubmit: setSubmit,
   setCurrentQuestion: setCurrentQuestion,
   setIsSkipped: setIsSkipped,
-  goToPreviousQuestion: goToPreviousQuestion,
-  getCsvListQuestions: getCsvListQuestions
+  goToPreviousQuestion: goToPreviousQuestion
 }), _dec(App_class = (_class2 = /*#__PURE__*/function (_Component) {
   App_inherits(App, _Component);
 
@@ -32528,17 +31654,9 @@ var App = (_dec = connect(function (state) {
       }),
           _allQuestions$find$op = _allQuestions$find.options,
           min = _allQuestions$find$op.min,
-          max = _allQuestions$find$op.max,
-          type = _allQuestions$find.type;
+          max = _allQuestions$find$op.max;
 
       var answer = !HelperService.objIsEmpty(this.params[id]) ? this.params[id] : null;
-
-      if (type === 'QuestionDynamicConfigurableDIGI') {
-        return Object.keys(answer).every(function (key) {
-          return answer[key];
-        });
-      }
-
       if (answer && typeof answer === 'string') return true;
 
       if (answer && App_typeof(answer) === 'object') {
@@ -32702,8 +31820,7 @@ var App = (_dec = connect(function (state) {
           isMockedData = _this$props3.isMockedData,
           activeQuestionId = _this$props3.activeQuestionId,
           thanksMessage = _this$props3.thanksMessage,
-          questionsAnswers = _this$props3.questionsAnswers,
-          getCsvListQuestions = _this$props3.getCsvListQuestions;
+          questionsAnswers = _this$props3.questionsAnswers;
       if (arePopupsDisabled) return null;
       var propsModel = {
         isValidQuestions: this.checkRequiredQuestions(),
@@ -32720,6 +31837,7 @@ var App = (_dec = connect(function (state) {
         title: title,
         questionsHistory: questionsHistory,
         submitted: submitted,
+        isChatMode: isChatMode,
         classMinWidth: classMinWidth,
         pendingSend: pendingSend,
         isFinished: isFinished,
@@ -32732,12 +31850,10 @@ var App = (_dec = connect(function (state) {
         goToPreviousQuestion: goToPreviousQuestion,
         isCurrentQuestionSet: isCurrentQuestionSet,
         isMockedData: isMockedData,
-        isChatMode: isChatMode,
         idForEmbed: idForEmbed,
         activeQuestionId: activeQuestionId,
         thanksMessage: thanksMessage,
-        questionsAnswers: questionsAnswers,
-        getCsvListQuestions: getCsvListQuestions
+        questionsAnswers: questionsAnswers
       };
       return this.needShowOpenModalButton() ? /*#__PURE__*/react.createElement(TriggerModalButton_TriggerModalButton_TriggerModalButton, App_extends({}, triggerModalButtonData, {
         showModal: this.showModal,
@@ -33661,6 +32777,15 @@ function checkInitApp() {
         DIGI_IS_ROLLED_UP_MODAL = _isOpenSelector.DIGI_IS_ROLLED_UP_MODAL;
 
     debugger;
+    console.info('---------1---------', {
+      timeout: timeout,
+      isOpen: isOpen,
+      showLeave: showLeave,
+      DIGI_TEST_MODE: DIGI_TEST_MODE,
+      isValidTimestamp: isValidTimestamp,
+      DIGI_IS_ROLLED_UP_MODAL: DIGI_IS_ROLLED_UP_MODAL
+    });
+    document.body.innerHTML += " <div style=\"width:50px;height:50px;z-index:1;background:blue;\">\n        ".concat(timeout + '-> timeout', "\n        ").concat(isOpen + '-> isOpen', "\n        ").concat(showLeave + '-> showLeave', "\n        ").concat(DIGI_TEST_MODE + '-> DIGI_TEST_MODE', "\n        ").concat(isValidTimestamp + '-> isValidTimestamp', "\n        ").concat(DIGI_IS_ROLLED_UP_MODAL + '-> DIGI_IS_ROLLED_UP_MODAL', "\n        </div> ");
     src_store.dispatch(initCore());
 
     if (DIGI_TEST_MODE) {
