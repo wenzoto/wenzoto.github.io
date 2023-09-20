@@ -4,31 +4,27 @@
     <meta charset="utf-8">
     <title>App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--    <script src="./digi_runner.js?surveyId=293&language=sl&apiUrl=https://a1slovenia-astra.sandsiv.com"></script>-->
-    <script src="./digi_runner.js?surveyId=284&language=sl&apiUrl=https://a1slovenia-astra.sandsiv.com&survey_id=284&OS=Android&app_version=1.0.22dev&customer_id=accountId&account_state=Grace%20without%20subscription&userId=userId&plan=Trial&device=emulator_arm64"></script>
+    <script src="./digi_runner.js"></script>
 </head>
 <body>
- <h1> 555 </h1>
+ <h1> 0 </h1>
 </body>
 <script>
 
-    window.VocSignal_ListenEvent('InitialResponseCallback', (data) => {
-        console.log('InitialResponseCallback', data);
 
-        if(data.status === 200) {
-            setTimeout(() => {
-                window.VocSignal_SendEvent('PopupSurvey')
-            }, 2000)
-        }
-    });
+    function SetParameters() {
+        console.error('fghfghfh')
+        window.customerId = 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999));
 
-    window.VocSignal_ListenEvent('PopupShownCallback', (data) => {
-        console.log('PopupShownCallback', data);
-    });
+        var test = window.VocSignal_SendEvent && window.VocSignal_SendEvent('SetParameters', {
+            apiUrl: 'https://stage7-astra.surv.biz/',
+            language: 'de',
+            customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
+            surveyId: 246,
+        });
+    }
 
-    window.VocSignal_ListenEvent('BlockerCallback', (text) => {
-        console.warn('BlockerCallback: ', text);
-    });
+    SetParameters()
 
 </script>
 </html>
