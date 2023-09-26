@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAD iframe test app</title>
+</head>
+<body>
+<h2>AAD iframe test</h2>
+<iframe
+        src="https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=ec33faa3-71b7-4675-a053-0ddfa673e40d&response_type=code&redirect_uri=http://localhost:5500/auth-end.html&response_mode=query&scope=openid%20offline_access%20https%3A%2F%2Fgraph.microsoft.com%2Fuser.read"
+        width="100%"
+        height="300px"
+        style="border:1px solid black"
+>
+</iframe>
+</body>
+</html>
