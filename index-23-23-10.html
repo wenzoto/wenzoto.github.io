@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title of the document</title>
+    <script src="https://aiutaciamigliorare.poste.it/digi_runner.js"></script>
+</head>
+
+<body>
+The content of the document......
+<script>
+    function SetParameters() {
+        window.VocSignal_SendEvent && window.VocSignal_SendEvent('SetParameters', {
+            apiUrl: 'https://aiutaciamigliorare.poste.it/',
+            language: 'it',
+            surveyId: 617,
+            metadata: {
+                'device': 'desktop',
+                'browser': 'Chrome'
+            }
+        });
+    }
+
+    SetParameters()
+    window.VocSignal_SendEvent('InitPopupButton');
+</script>
+
+</body>
+
+</html>
