@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    class AnswerHandler {
+        constructor() {
+            this.TRANSLATE_URL = `https://translation.googleapis.com/language/translate/v2?key=${API_KEY}`;
+            this.ANALYZE_SENTIMENT_URL = `https://language.googleapis.com/v1/documents:analyzeSentiment?key=${API_KEY}`;
+            this.SET_CURRENT_QUESTION_URL = `${DIGI_API_URL}/web/set_current_question/`;
+        }
+
+        getQuestionnaireHash() {
+            return window.VocSignal_SendEvent('GetQuestionnaireHash').hash;
+        }
+
+        createDeferredPromise() {
+            let resolve, reject;
+            const promise = new Promise((res, rej) => {
+                resolve = res;
+                reject = rej;
+            });
+
+            return {promise, resolve, reject};
+        }
+
+        xhrRequest(type, body, url) {
+            const deferred = this.createDeferredPromise();
+            const xhr = new XMLHttpRequest();
+            xhr.open(type, url, true);
+            xhr.onload = () => {
+                deferred.resolve(xhr.response);
+            };
+            xhr.onerror = () => {
+                deferred.reject(xhr.response);
+            };
+            xhr.setRequestHeader('Accept', 'application/json');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify(body));
+            return deferred;
+        }
+
+        saveAnswersInvisibleQuestions(answers) {
+            const url = `${DIGI_API_URL}/web/save_questionnaire_response/${this.getQuestionnaireHash()}/`;
+            return this.xhrRequest('POST', answers, url);
+        }
+
+        doTranslation(q) {
+            return this.xhrRequest('POST', {q, target: "en"}, this.TRANSLATE_URL);
+        }
+
+        async doAnalyzeSentiment(content) {
+            return await this.xhrRequest('POST', {
+                encodingType: "UTF8",
+                document: {
+                    type: "PLAIN_TEXT",
+                    content
+                }
+            }, this.ANALYZE_SENTIMENT_URL).promise;
+        }
+
+        setupEventListener(groupOfQuestions) {
+            window.VocSignal_ListenEvent('SentAnswerCallback', data => {
+
+                const questionsId = data.map(({id}) => id)
+                groupOfQuestions.map(el => {
+                    if (questionsId.includes(el.OPEN_QUESTION)) {
+                        const {answerValue} = data.find(({id}) => id === el.OPEN_QUESTION);
+                        this.doTranslation(answerValue)
+                            .promise
+                            .then(async (value) => {
+                                let translatedText = JSON.parse(value).data.translations[0].translatedText;
+                                translatedText = translatedText.replace(/&#39;/g, "'");
+
+                                let model = null
+
+                                if (el.INVISIBLE_QUESTION__TRANSLATION) {
+                                    model = {
+                                        answers: [
+                                            {
+                                                id: el.INVISIBLE_QUESTION__TRANSLATION,
+                                                message: translatedText
+                                            },
+                                        ]
+                                    }
+                                }
+
+                                if (el.INVISIBLE_QUESTION__SENTIMENT) {
+                                    const sentiment = await this.doAnalyzeSentiment(translatedText)
+                                    const sentimentScore = JSON.parse(sentiment).documentSentiment.score
+                                    const SENTIMENT_ID = el.SENTIMENT_CONDITION.find(el => el.condition >= sentimentScore).id
+
+                                    model = model
+                                        ? {
+                                            ...model,
+                                            answers: [
+                                                ...model.answers,
+                                                {
+                                                    id: el.INVISIBLE_QUESTION__SENTIMENT,
+                                                    message: {
+                                                        [SENTIMENT_ID]: SENTIMENT_ID
+                                                    }
+                                                },
+                                            ]
+                                        }
+                                        : {
+                                            answers: [
+                                                {
+                                                    id: el.INVISIBLE_QUESTION__SENTIMENT,
+                                                    message: {
+                                                        [SENTIMENT_ID]: SENTIMENT_ID
+                                                    }
+                                                },
+                                            ]
+                                        }
+                                }
+
+                                model && this.saveAnswersInvisibleQuestions(model)
+                            });
+                    }
+                })
+            });
+        }
+    }
+
+
+
+    const DIGI_API_URL = 'https://stage7-astra.surv.biz';
+    const API_KEY = 'AIzaSyAuBBtgXX2fzaayS0_9Zj1BGpyvGCoMw7s';
+    const processor = new AnswerHandler();
+    processor.setupEventListener([
+        {
+            OPEN_QUESTION: 1498,
+            INVISIBLE_QUESTION__TRANSLATION: 1499,
+            INVISIBLE_QUESTION__SENTIMENT: 1523,
+            SENTIMENT_CONDITION: [
+                {
+                    id: "Negative",
+                    condition: 0.3
+                },
+                {
+                    id: "Neutral",
+                    condition: 0.6
+                },
+                {
+                    id: "Positive",
+                    condition: 1
+                }
+            ]
+        },
+        {
+            OPEN_QUESTION: 1524,
+            INVISIBLE_QUESTION__TRANSLATION: 1525,
+        },
+        {
+            OPEN_QUESTION: 1526,
+            INVISIBLE_QUESTION__SENTIMENT: 1527,
+            SENTIMENT_CONDITION: [
+                {
+                    id: "1",
+                    condition: 0.3
+                },
+                {
+                    id: "2",
+                    condition: 0.6
+                },
+                {
+                    id: "3",
+                    condition: 1
+                }
+            ]
+        }
+    ]);
+</script>
+
+</body>
+</html>
