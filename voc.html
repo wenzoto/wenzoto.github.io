@@ -135,7 +135,7 @@
                                 }
 
                                 if (el.INVISIBLE_QUESTION__SENTIMENT) {
-                                    this.doAnalyzeSentiment(translatedText).then(
+                                    this.doAnalyzeSentiment(`${SENTIMENT_PREFIX}${translatedText}`).then(
                                         (sentiment) => {
                                             const sentimentScore = JSON.parse(sentiment).documentSentiment.score
                                             const SENTIMENT_ID = el.SENTIMENT_CONDITION.find(el => el.condition >= sentimentScore).id
@@ -182,10 +182,9 @@
         }
     }
 
-
-
     const TRANSLATE_URL = null;
     const ANALYZE_SENTIMENT_URL = null;
+    const SENTIMENT_PREFIX = 'The comment is: ';
     const DIGI_API_URL = 'https://stage7-astra.surv.biz';
     const API_KEY = 'AIzaSyAuBBtgXX2fzaayS0_9Zj1BGpyvGCoMw7s';
     const processor = new AnswerHandler();
