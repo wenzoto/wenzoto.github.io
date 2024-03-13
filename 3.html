@@ -14,22 +14,19 @@
 <script>
 
     const url = `https://popup.sandsiv.com/post-endpoint`;
-    window.obb = {
-        key1: "value1",
-        key2: "value2"
-    }
+    window.obb = 'LI-009998'
 
     debugger
 
     function s1() {
         fetch(url, {
             method: 'POST',
-            mode: 'no-cors', // Додаємо це
+            // mode: 'no-cors', // Додаємо це
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify( window.obb)
+            body: window.obb
         })
             .then(response => response.json())
             .then(data => {
@@ -59,7 +56,7 @@
             console.error('Помилка мережі', e);
         };
 
-        const jsonData = JSON.stringify(window.obb);
+        const jsonData = window.obb
         xhr.send(jsonData);
 
 
