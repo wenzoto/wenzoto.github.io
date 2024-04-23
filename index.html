@@ -7,27 +7,21 @@
     <script src="./digi_runner.js"></script>
 </head>
 <body>
- <h1> 2 </h1>
- <button onclick="SetParameters()">SetParameters</button>
+ <h1> test </h1>
 </body>
 <script>
 
-
     function SetParameters() {
-        console.error('fghfghfh')
-        window.customerId = 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999));
-
-        console.log('---------window.VocSignal_SendEvent---------', window.VocSignal_SendEvent)
-
-        window.VocSignal_SendEvent && window.VocSignal_SendEvent('SetParameters', {
+        window.VocSignal_SendEvent
+        && window.VocSignal_SendEvent('SetParameters', {
             apiUrl: 'https://stage7-astra.surv.biz/',
-            language: 'de',
+            language: 'en',
             customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
-            surveyId: 246,
+            surveyId: 949,
         });
     }
 
-    SetParameters()
+    SetParameters();
 
 </script>
 </html>

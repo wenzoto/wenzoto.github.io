@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./digi_runner.js"></script>
+</head>
+<body>
+ <h1> 2 </h1>
+ <button onclick="SetParameters()">SetParameters</button>
+</body>
+<script>
+
+
+    function SetParameters() {
+        console.error('fghfghfh')
+        window.customerId = 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999));
+
+        console.log('---------window.VocSignal_SendEvent---------', window.VocSignal_SendEvent)
+
+        window.VocSignal_SendEvent && window.VocSignal_SendEvent('SetParameters', {
+            apiUrl: 'https://stage7-astra.surv.biz/',
+            language: 'de',
+            customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
+            surveyId: 246,
+        });
+    }
+
+    SetParameters()
+
+</script>
+</html>
