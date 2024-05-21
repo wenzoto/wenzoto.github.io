@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--    <script src=""></script>-->
+    <script src="https://a1slovenia-astra.sandsiv.com/digi_runner.js"></script>
+</head>
+<body>
+<h1> 02 </h1>
+</body>
+<script>
+
+    console.log('--------window.VocSignal_SendEvent----------', window.VocSignal_SendEvent)
+    function SetParameters() {
+        const qqqq = window.VocSignal_SendEvent
+        && window.VocSignal_SendEvent('SetParameters', {
+            apiUrl: 'https://a1slovenia-astra.sandsiv.com',
+            language: 'sl',
+            customerId: 'test-zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
+            surveyId: 26,
+        });
+
+
+        console.log('--------window.VocSignal_SendEvent----------', window.VocSignal_SendEvent, qqqq)
+    }
+
+    //?surveyId=&language=
+
+    SetParameters();
+
+</script>
+</html>
