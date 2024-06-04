@@ -1,27 +1,79 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <title>App</title>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--    <script src="./digi_runner.js"></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1> 2 </h1>-->
+<!--</body>-->
+<!--<script>-->
+
+<!--    function SetParameters() {-->
+<!--        window.VocSignal_SendEvent-->
+<!--        && window.VocSignal_SendEvent('SetParameters', {-->
+<!--            apiUrl: 'https://training-astra.sandsiv.com/',-->
+<!--            language: 'it',-->
+<!--            customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),-->
+<!--            surveyId: 2481,-->
+<!--        });-->
+<!--    }-->
+
+<!--    SetParameters();-->
+
+<!--</script>-->
+<!--</html>-->
+
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-    <meta charset="utf-8">
-    <title>App</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="./digi_runner.js"></script>
+    <title></title>
+    <style>
+        #VocSignalApp .SandSIV_Feedback_Modal {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            height: auto;
+            width: auto;
+            transform: none;
+        }
+
+        #VocSignalApp .SandSIV_Feedback_Modal_Close {
+            display: none;
+        }
+
+        .supportMessage {
+            width: 100%;
+            margin-top: 100px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<h1> 2 </h1>
+<div id="titleForPage" style="display: none;">training-astra.sandsiv.com</div>
 </body>
+<script src="./digi_runner.js?full_screen=true"></script>
 <script>
-
-    function SetParameters() {
-        window.VocSignal_SendEvent
-        && window.VocSignal_SendEvent('SetParameters', {
-            apiUrl: 'https://training-astra.sandsiv.com/',
-            language: 'it',
-            customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
-            surveyId: 2481,
+    if (window.VocSignal_SendEvent) {
+        window.VocSignal_SendEvent('GetSurvey', {
+            questionnaireHash: "0sSp3XkNe4amjB61Jnb2V6JYXDHf2kpk",
+            firstAnswerText: ""
+        });
+        
+        window.VocSignal_ListenEvent('SetParametersCallback', function () {
+            window.VocSignal_SendEvent('PopupSurvey');
         });
     }
-
-    SetParameters();
-
+    
+    console.log('---------1---------', 1)
+    
+    var titleForPage = document.getElementById("titleForPage").innerText;
+    document.title = titleForPage;
 </script>
 </html>
