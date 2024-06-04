@@ -63,16 +63,17 @@
     if (window.VocSignal_SendEvent) {
         window.VocSignal_SendEvent('GetSurvey', {
             questionnaireHash: "0sSp3XkNe4amjB61Jnb2V6JYXDHf2kpk",
+            apiUrl: 'https://training-astra.sandsiv.com/',
             firstAnswerText: ""
         });
-        
+
         window.VocSignal_ListenEvent('SetParametersCallback', function () {
             window.VocSignal_SendEvent('PopupSurvey');
         });
     }
-    
-    console.log('---------1---------', 1)
-    
+
+    console.log('---------1---------', 2)
+
     var titleForPage = document.getElementById("titleForPage").innerText;
     document.title = titleForPage;
 </script>
