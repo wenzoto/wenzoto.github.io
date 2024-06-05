@@ -32,21 +32,37 @@
 </body>
 <script src="./digi_runner.js?full_screen=true"></script>
 <script>
-    if (window.VocSignal_SendEvent) {
-        window.VocSignal_SendEvent('GetSurvey', {
-            questionnaireHash: "v2nLqltpv8hlXcXScwhj9USJZvkkgMv5",
-            apiUrl: 'https://training-astra.sandsiv.com/',
-            firstAnswerText: ""
-        });
 
-        window.VocSignal_ListenEvent('SetParametersCallback', function () {
-            window.VocSignal_SendEvent('PopupSurvey');
+    function SetParameters() {
+        window.VocSignal_SendEvent
+        && window.VocSignal_SendEvent('SetParameters', {
+            apiUrl: 'https://stage7-astra.surv.biz/',
+            language: 'de',
+            customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
+            surveyId: 964,
         });
     }
 
-    console.log('---------5---------', 7)
+    SetParameters();
 
-    var titleForPage = document.getElementById("titleForPage").innerText;
-    document.title = titleForPage;
+    console.log('---------1---------')
+
+
+    // if (window.VocSignal_SendEvent) {
+    //     window.VocSignal_SendEvent('GetSurvey', {
+    //         questionnaireHash: "v2nLqltpv8hlXcXScwhj9USJZvkkgMv5",
+    //         apiUrl: 'https://training-astra.sandsiv.com/',
+    //         firstAnswerText: ""
+    //     });
+    //
+    //     window.VocSignal_ListenEvent('SetParametersCallback', function () {
+    //         window.VocSignal_SendEvent('PopupSurvey');
+    //     });
+    // }
+    //
+    // console.log('---------5---------', 7)
+    //
+    // var titleForPage = document.getElementById("titleForPage").innerText;
+    // document.title = titleForPage;
 </script>
 </html>
