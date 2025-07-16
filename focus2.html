@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./digi_runner-focus2.js"></script>
+</head>
+<body>
+<h1> test -  </h1>
+<article>
+    <h1>How to be a wizard</h1>
+    <ol>
+        <li>Grow a long, majestic beard.</li>
+        <li>Wear a tall, pointed hat.</li>
+        <li>Have I mentioned the beard?</li>
+    </ol>
+    <footer>
+        <p>© 2018 Gandalf</p>
+    </footer>
+</article>
+
+<form action="" method="get" class="form-example">
+    <div class="form-example">
+        <label for="name">Enter your name: </label>
+        <input type="text" name="name" id="name" required />
+    </div>
+    <div class="form-example">
+        <label for="email">Enter your email: </label>
+        <input type="email" name="email" id="email" required />
+    </div>
+    <div class="form-example">
+        <input type="submit" value="Subscribe!" />
+    </div>
+</form>
+<article>
+    <h1>How to be a wizard</h1>
+    <ol>
+        <li>Grow a long, majestic beard.</li>
+        <li>Wear a tall, pointed hat.</li>
+        <li>Have I mentioned the beard?</li>
+    </ol>
+    <footer>
+        <p>© 2018 Gandalf</p>
+    </footer>
+</article>
+
+</body>
+<script>
+
+    function SetParameters() {
+        window.VocSignal_SendEvent
+        && window.VocSignal_SendEvent('SetParameters', {
+            apiUrl: 'https://stage7-astra.surv.biz',
+            language: 'en',
+            customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
+            // surveyId: 964,
+            surveyId: 949,
+        });
+    }
+
+    setTimeout(() => {
+        SetParameters();
+    }, 3000)
+
+    // window.VocSignal_SendEvent('SetCsvParameters', [{ id: 2720,  limit: 2, randomLimit: true },{ id: 4042,  limit: 2, randomLimit: true }] )
+
+</script>
+</html>
