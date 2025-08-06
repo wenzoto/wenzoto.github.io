@@ -4,16 +4,52 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" media="all" href="Tableau%20de%20bord%20-%20Mon%20Compte%20-%20Salt_files/all.min.css" />
     <title> 234234 </title>
+    <script src="./digi_runner.js"></script>
 </head>
 <body class="salt body--mobile">
 <div id="VocSignalApp" class="ScreeningClass_tLMmCahp0FJG0bCKQJkIPx3JWAujKA50">
     <div dir="ltr" class="modal__SandSIV_Template">
         <div class="SandSIV_Feedback_Modal SandSIV_Feedback_Modal__MinWidth SandSIV_active-question-100494">
             <footer>
-0000000
+                2342343423423
             </footer>
         </div>
     </div>
 </div>
 </body>
+
+<script>
+
+    function SetParameters() {
+        window.VocSignal_SendEvent
+        && window.VocSignal_SendEvent('SetParameters', {
+            apiUrl: 'https://stage7-astra.surv.biz/',
+            language: 'de',
+            customerId: 'zu66FVdAjdsAZi74'+ Math.floor(Math.random() * Math.floor(9999)),
+            surveyId: 964,
+        });
+    }
+
+    SetParameters();
+
+    console.log('---------3---------')
+
+
+    // if (window.VocSignal_SendEvent) {
+    //     window.VocSignal_SendEvent('GetSurvey', {
+    //         questionnaireHash: "v2nLqltpv8hlXcXScwhj9USJZvkkgMv5",
+    //         apiUrl: 'https://training-astra.sandsiv.com/',
+    //         firstAnswerText: ""
+    //     });
+    //
+    //     window.VocSignal_ListenEvent('SetParametersCallback', function () {
+    //         window.VocSignal_SendEvent('PopupSurvey');
+    //     });
+    // }
+    //
+    // console.log('---------5---------', 7)
+    //
+    // var titleForPage = document.getElementById("titleForPage").innerText;
+    // document.title = titleForPage;
+</script>
 </html>
