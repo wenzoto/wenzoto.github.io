@@ -8630,7 +8630,80 @@
                     <span aria-hidden="true">×</span>
                     <span class="a11y-hidden" data-i18n="utils.nav.close_menu">Fermer le menu principal</span>
                 </button>
+                <div id="nav" class="vertical-nav animated animated--fade-in">
+                    <a href="https://my.salt.ch/index.html" class="logo hidden-mobile">
+                        <img src="Tableau%20de%20bord%20-%20Mon%20Compte%20-%20Salt_files/logo-salt-white.svg" id="logo" role="img" alt="salt Retourner à la page d'accueil" />
+                    </a>
+                    <nav role="navigation" id="mainNav" class="main-menu" aria-label="Menu principal">
+                        <ul class="unstyled">
+                            <li>
+                                <a href="https://my.salt.ch/index.html" aria-current="page" class="active">
+                                    <svg aria-hidden="true" focusable="false" class="dashboard">
+                                        <use xlink:href="#dashboard"></use>
+                                    </svg>
+                                    <span data-i18n="utils.nav.dashboard">Tableau de bord</span>
+                                </a>
+                            </li>
+                            <li id="linkSub" class="">
+                                <a href="https://my.salt.ch/subscription.html">
+                                    <svg aria-hidden="true" focusable="false" class="subscription">
+                                        <use xlink:href="#subscription"></use>
+                                    </svg>
+                                    <span data-i18n="utils.nav.subscription">Abonnements</span>
+                                </a>
+                            </li>
+                            <li id="linkBill" class="">
+                                <a href="https://my.salt.ch/billing.html">
+                                    <svg aria-hidden="true" focusable="false" class="billing">
+                                        <use xlink:href="#billing"></use>
+                                    </svg>
+                                    <span data-i18n="utils.nav.bill">Factures</span>
+                                </a>
+                            </li>
 
+                            <li>
+                                <a href="https://my.salt.ch/offers.html">
+                                    <svg aria-hidden="true" focusable="false" class="offers">
+                                        <use xlink:href="#offers"></use>
+                                    </svg>
+                                    <span data-i18n="utils.nav.offers">Offres et renouvellement</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://my.salt.ch/orders.html">
+                                    <svg aria-hidden="true" focusable="false" class="orders">
+                                        <use xlink:href="#orders"></use>
+                                    </svg>
+                                    <span data-i18n="utils.nav.orders">Commandes</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <p class="a11y-hidden" id="languagePickerDescription">FR - Sélectionner la langue. Langue actuelle: Français</p>
+                    <ul id="languagePicker" class="language-picker">
+                        <li id="de" class="language-picker__item">
+                            <a lang="de" hreflang="de" href="https://my.salt.ch/?lang=de" aria-label="DE - Deutsch">
+                                <span aria-hidden="true">de</span>
+                            </a>
+                        </li>
+                        <li id="fr" class="language-picker__item language-picker__item--current">
+                            <a lang="fr" hreflang="fr" href="https://my.salt.ch/?lang=fr" aria-label="FR - Français" aria-current="true">
+                                <span aria-hidden="true">fr</span>
+                            </a>
+                        </li>
+                        <li id="it" class="language-picker__item">
+                            <a lang="it" hreflang="it" href="https://my.salt.ch/?lang=it" aria-label="IT - Italiano">
+                                <span aria-hidden="true">it</span>
+                            </a>
+                        </li>
+                        <li id="en" class="language-picker__item en">
+                            <a hreflang="en" href="https://my.salt.ch/?lang=en" aria-label="EN - English">
+                                <span aria-hidden="true">en</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <div class="wrapper animation animated animated--fade-in" id="page" style="">
